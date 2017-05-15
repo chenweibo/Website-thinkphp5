@@ -94,7 +94,7 @@ class Siteset extends Controller
         $param = input('param.');
         $param = parseParams($param['data']);
 
-        return $_POST;
+        return 1;
     }
 
 

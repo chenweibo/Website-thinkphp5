@@ -14,7 +14,7 @@ use think\Db;
 
 
 
-Route::bind('index');
+
 return [
     '__pattern__' => [
         'name' => '\w+',

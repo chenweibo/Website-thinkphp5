@@ -89,6 +89,17 @@ class Siteset extends Controller
           return $this->fetch();     
     }
 
+    public function slidesave(){
+
+        $param = input('param.');
+        $param = parseParams($param['data']);
+
+        return $_POST;
+    }
+
+
+
+
 
 
     

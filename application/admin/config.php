@@ -16,6 +16,8 @@ return [
         '__CSS__'    => '/static/admin/css',
         '__JS__'     => '/static/admin/js',
         '__IMG__' => '/static/admin/images',
+        '__UP__' => '/uploads',
+
     ),
 
     //管理员状态

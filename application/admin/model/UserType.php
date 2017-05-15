@@ -111,6 +111,7 @@ class UserType extends Model
     {
         return $this->select();
     }
+    
 
     //获取角色的权限节点
     public function getRuleById($id)

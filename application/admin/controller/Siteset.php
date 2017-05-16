@@ -7,7 +7,7 @@ use think\Request;
 use think\Db;
 use app\admin\model\Site;
 
-class Siteset extends Controller
+class Siteset extends Base
 {
     /**
      * 显示资源列表
@@ -56,6 +56,7 @@ class Siteset extends Controller
     }
 
     public function slide(){
+
         if(request()->isAjax()){
 
             $site= new Site();
@@ -67,6 +68,7 @@ class Siteset extends Controller
             $return['total'] = $site->getslidecount($param['type']);  //总数据
             $selectResult=$site->getSlideByWhere($where, $offset, $limit);
             foreach($selectResult as $key=>$vo){
+
                 $operate = [
                     '编辑' => url('siteset/slideEdit', ['id' => $vo['id']]),
                     '删除' => "javascript:slideDel('".$vo['id']."')"
@@ -84,22 +86,55 @@ class Siteset extends Controller
 
     public function slideAdd(){
 
+        if(request()->isPost()){
 
- 
+
+            $site= new Site();
+            $param = input('param.');
+            $param = parseParams($param['data']);
+            $flag = $site->insertslide($param);
+
+            return json(['code' => $flag['code'], 'data' => $flag['data'], 'msg' => $flag['msg']]);
+
+
+        }
+          $this->assign('type',input('type'));
           return $this->fetch();     
     }
 
-    public function slidesave(){
 
-        $param = input('param.');
+
+
+    public function  slideEdit(){
+
+        $site= new Site();
+        if(request()->isPost()){
+
+        $param = input('post.');
         $param = parseParams($param['data']);
+        $flag = $site->editslide($param);
 
-        return 1;
+        return json(['code' => $flag['code'], 'data' => $flag['data'], 'msg' => $flag['msg']]);
+
+        }
+
+        $id=input('param.id');
+        $this->assign([
+        'id'=> $id,
+        'slide' =>$site->getoneslide($id)
+        ]);
+        return $this->fetch();
     }
 
 
+    public function slideDel()
+    {
+        $id = input('param.id');
 
-
+        $site = new Site();
+        $flag = $site->delslide($id);
+        return json(['code' => $flag['code'], 'data' => $flag['data'], 'msg' => $flag['msg']]);
+    }
 
 
     

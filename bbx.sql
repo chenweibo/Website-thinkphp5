@@ -1,19 +1,78 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : localhost_3306
-Source Server Version : 100121
+Source Server         : fuck.io
+Source Server Version : 50505
 Source Host           : localhost:3306
 Source Database       : bbx
 
 Target Server Type    : MYSQL
-Target Server Version : 100121
+Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2017-05-14 19:28:32
+Date: 2017-05-17 16:18:30
 */
 
 SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for cate
+-- ----------------------------
+DROP TABLE IF EXISTS `cate`;
+CREATE TABLE `cate` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) DEFAULT NULL,
+  `cate_enname` varchar(255) DEFAULT NULL,
+  `cate_sort` int(255) DEFAULT '88',
+  `pid` int(255) DEFAULT '0',
+  `cate_path` varchar(255) DEFAULT NULL,
+  `cate_rewrite` varchar(255) DEFAULT NULL,
+  `cate_type` varchar(255) DEFAULT NULL,
+  `cate_img` varchar(255) DEFAULT NULL,
+  `cate_recommend` varchar(255) DEFAULT NULL,
+  `href` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of cate
+-- ----------------------------
+INSERT INTO `cate` VALUES ('1', '测试大类1', null, '88', '0', null, null, '1', null, null, '12');
+INSERT INTO `cate` VALUES ('2', '测试大类2', null, '88', '0', null, null, '1', null, null, '3');
+INSERT INTO `cate` VALUES ('11', '子分类', null, '88', '1', null, null, '1', null, null, null);
+
+-- ----------------------------
+-- Table structure for content
+-- ----------------------------
+DROP TABLE IF EXISTS `content`;
+CREATE TABLE `content` (
+  `id` int(255) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) DEFAULT NULL,
+  `rewrite` varchar(255) DEFAULT NULL,
+  `lid` varchar(255) DEFAULT NULL,
+  `path` varchar(255) DEFAULT NULL,
+  `time` varchar(255) DEFAULT NULL,
+  `author` varchar(255) DEFAULT NULL,
+  `content` varchar(255) DEFAULT NULL,
+  `img` varchar(255) DEFAULT NULL,
+  `moreimg` varchar(255) DEFAULT NULL,
+  `down` varchar(255) DEFAULT NULL,
+  `keywords` varchar(255) DEFAULT NULL,
+  `description` varchar(255) DEFAULT NULL,
+  `lang` varchar(255) DEFAULT NULL,
+  `recommend` int(10) DEFAULT NULL,
+  `cate_type` int(255) DEFAULT NULL,
+  `click` int(255) DEFAULT NULL,
+  `show` int(10) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of content
+-- ----------------------------
+INSERT INTO `content` VALUES ('1', '测试1', null, null, null, null, null, null, null, null, null, null, null, null, null, '1', null, null);
+INSERT INTO `content` VALUES ('2', '测试2', null, null, null, null, null, null, null, null, null, null, null, null, null, '1', null, null);
+INSERT INTO `content` VALUES ('3', '测试3', null, null, null, null, null, null, null, null, null, null, null, null, null, '1', null, null);
 
 -- ----------------------------
 -- Table structure for node
@@ -30,7 +89,7 @@ CREATE TABLE `node` (
   `style` varchar(155) DEFAULT '' COMMENT '菜单样式',
   `sort` int(50) DEFAULT '99',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=31 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of node
@@ -49,7 +108,7 @@ INSERT INTO `node` VALUES ('11', '系统管理', '#', '#', '#', '2', '0', 'fa fa
 INSERT INTO `node` VALUES ('12', '数据备份/还原', 'admin', 'data', 'index', '2', '11', '', '99');
 INSERT INTO `node` VALUES ('13', '备份数据', 'admin', 'data', 'importdata', '1', '12', '', '99');
 INSERT INTO `node` VALUES ('14', '还原数据', 'admin', 'data', 'backdata', '1', '12', '', '99');
-INSERT INTO `node` VALUES ('15', '基本设置', '#', '#', '#', '2', '0', 'fa fa-cog', '1');
+INSERT INTO `node` VALUES ('15', '基本管理', '#', '#', '#', '2', '0', 'fa fa-cog', '1');
 INSERT INTO `node` VALUES ('16', '产品管理', '#', '#', '#', '2', '0', 'fa fa-th-large', '3');
 INSERT INTO `node` VALUES ('17', '文章管理', '#', '#', '#', '2', '0', 'fa fa-book', '4');
 INSERT INTO `node` VALUES ('18', '图片管理', '#', '#', '#', '2', '0', 'fa fa-file-image-o', '5');
@@ -58,6 +117,12 @@ INSERT INTO `node` VALUES ('20', '微信管理', '#', '#', '#', '2', '0', 'fa fa
 INSERT INTO `node` VALUES ('21', '插件管理', '#', '#', '#', '2', '0', 'fa fa-plug', '98');
 INSERT INTO `node` VALUES ('23', '基本设置', 'admin', 'siteset', 'index', '2', '15', '', '99');
 INSERT INTO `node` VALUES ('24', '幻灯片管理', 'admin', 'siteset', 'slide', '2', '15', '', '99');
+INSERT INTO `node` VALUES ('25', '添加幻灯片', 'admin', 'siteset', 'slideadd', '1', '24', '', '99');
+INSERT INTO `node` VALUES ('26', '编辑幻灯片', 'admin', 'siteset', 'slideedit', '1', '24', '', '99');
+INSERT INTO `node` VALUES ('27', '删除幻灯片', 'admin', 'siteset', 'slidedel', '1', '24', '', '99');
+INSERT INTO `node` VALUES ('28', '保存设置', 'admin', 'siteset', 'save', '1', '23', '', '99');
+INSERT INTO `node` VALUES ('29', '产品分类', 'admin', 'product', 'cate', '2', '16', '', '99');
+INSERT INTO `node` VALUES ('30', '产品列表', 'admin', 'product', 'contentlist', '2', '16', '', '99');
 
 -- ----------------------------
 -- Table structure for role
@@ -74,7 +139,7 @@ CREATE TABLE `role` (
 -- Records of role
 -- ----------------------------
 INSERT INTO `role` VALUES ('1', '超级管理员', '');
-INSERT INTO `role` VALUES ('2', '普通管理员', '1,2,4,15');
+INSERT INTO `role` VALUES ('2', '普通管理员', '1,2,3,4,5,6,7,8,9,10,15,23,28,24,25,26');
 
 -- ----------------------------
 -- Table structure for site
@@ -96,36 +161,20 @@ CREATE TABLE `site` (
   `slide_sort` int(255) DEFAULT '99',
   `slide_img` varchar(255) DEFAULT NULL,
   `slide_type` varchar(255) DEFAULT NULL,
+  `slide_a` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of site
 -- ----------------------------
-INSERT INTO `site` VALUES ('1', '12', '123', '123', '123', '3', '4', '5', '6', '7', '98', null, null, null, null);
-INSERT INTO `site` VALUES ('2', null, null, null, null, null, null, null, null, null, null, '1', null, null, '1');
-INSERT INTO `site` VALUES ('3', null, null, null, null, null, null, null, null, null, null, '2', null, null, '1');
-INSERT INTO `site` VALUES ('4', null, null, null, null, null, null, null, null, null, null, '3', null, null, '1');
-INSERT INTO `site` VALUES ('5', null, null, null, null, null, null, null, null, null, null, '4', null, null, '1');
-INSERT INTO `site` VALUES ('6', null, null, null, null, null, null, null, null, null, null, '5', '1', null, '1');
-INSERT INTO `site` VALUES ('7', null, null, null, null, null, null, null, null, null, null, '6', '2', null, '1');
-INSERT INTO `site` VALUES ('8', null, null, null, null, null, null, null, null, null, null, '7', '3', null, '1');
-INSERT INTO `site` VALUES ('9', null, null, null, null, null, null, null, null, null, null, '8', '4', null, '1');
-INSERT INTO `site` VALUES ('10', null, null, null, null, null, null, null, null, null, null, '9', '5', null, '1');
-INSERT INTO `site` VALUES ('11', null, null, null, null, null, null, null, null, null, null, '10', '6', null, '1');
-INSERT INTO `site` VALUES ('12', null, null, null, null, null, null, null, null, null, null, '11', '7', null, '1');
-INSERT INTO `site` VALUES ('13', null, null, null, null, null, null, null, null, null, null, '12', '8', null, '1');
-INSERT INTO `site` VALUES ('14', null, null, null, null, null, null, null, null, null, null, '13', null, null, '1');
-INSERT INTO `site` VALUES ('15', null, null, null, null, null, null, null, null, null, null, '14', null, null, '1');
-INSERT INTO `site` VALUES ('16', null, null, null, null, null, null, null, null, null, null, '15', null, null, '1');
-INSERT INTO `site` VALUES ('17', null, null, null, null, null, null, null, null, null, null, '16', null, null, '1');
-INSERT INTO `site` VALUES ('18', null, null, null, null, null, null, null, null, null, null, '17', null, null, '1');
-INSERT INTO `site` VALUES ('19', null, null, null, null, null, null, null, null, null, null, '18', null, null, '2');
-INSERT INTO `site` VALUES ('20', null, null, null, null, null, null, null, null, null, null, '19', null, null, '2');
-INSERT INTO `site` VALUES ('21', null, null, null, null, null, null, null, null, null, null, '20', null, null, '2');
-INSERT INTO `site` VALUES ('22', null, null, null, null, null, null, null, null, null, null, '21', null, null, '2');
-INSERT INTO `site` VALUES ('23', null, null, null, null, null, null, null, null, null, null, '22', null, null, '2');
-INSERT INTO `site` VALUES ('24', null, null, null, null, null, null, null, null, null, null, '23', null, null, '2');
+INSERT INTO `site` VALUES ('1', '12', '123', '123', '123', '3', '4123', '5', '6', '7', '98', null, null, null, null, null);
+INSERT INTO `site` VALUES ('42', null, null, null, null, null, null, null, null, null, null, '你是谁', '0', '', '', '');
+INSERT INTO `site` VALUES ('46', null, null, null, null, null, null, null, null, null, null, '123', '0', '', '', '');
+INSERT INTO `site` VALUES ('47', null, null, null, null, null, null, null, null, null, null, '你是谁', '0', '', '', '');
+INSERT INTO `site` VALUES ('48', null, null, null, null, null, null, null, null, null, null, '你是谁', '123', '', '', '');
+INSERT INTO `site` VALUES ('49', null, null, null, null, null, null, null, null, null, null, '1123', '0', '', '', '');
+INSERT INTO `site` VALUES ('51', null, null, null, null, null, null, null, null, null, null, '12', '0', '', '1', '');
 
 -- ----------------------------
 -- Table structure for user
@@ -147,6 +196,5 @@ CREATE TABLE `user` (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('1', 'admin', '21232f297a57a5a743894a0e4a801fc3', '44', '127.0.0.1', '1494655079', 'admin', '1', '1');
-INSERT INTO `user` VALUES ('2', 'xiaobai', '4297f44b13955235245b2497399d7a93', '6', '127.0.0.1', '1470368260', '小白', '1', '2');
-INSERT INTO `user` VALUES ('5', 'bobo', 'e10adc3949ba59abbe56e057f20f883e', '2', '127.0.0.1', '1494481091', '123', '1', '2');
+INSERT INTO `user` VALUES ('1', 'admin', '21232f297a57a5a743894a0e4a801fc3', '68', '127.0.0.1', '1494999954', 'admin', '1', '1');
+INSERT INTO `user` VALUES ('5', 'bobo', 'e10adc3949ba59abbe56e057f20f883e', '19', '127.0.0.1', '1494904744', '123', '1', '2');

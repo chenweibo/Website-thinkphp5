@@ -55,6 +55,27 @@ function subTree($param, $pid = 0)
     return $res;
 }
 
+
+function make_tree($list,$pk='id',$pid='pid',$child='children',$root=0){
+    $tree=array();
+    $packData=array();
+    foreach ($list as  $data) {
+        $packData[$data[$pk]] = $data;
+    }
+    foreach ($packData as $key =>$val){
+        if($val[$pid]==$root){//代表跟节点
+            $tree[]=& $packData[$key];
+        }else{
+            //找到其父类
+            $packData[$val[$pid]][$child][]=& $packData[$key];
+        }
+    }
+    return $tree;
+}
+
+
+
+
 /**
  * 整理菜单住方法
  * @param $param

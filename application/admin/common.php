@@ -73,6 +73,23 @@ function make_tree($list,$pk='id',$pid='pid',$child='children',$root=0){
     return $tree;
 }
 
+/**
+ * 拆分PATH
+ * @param $param
+ * @return array
+ */
+
+function explodepath($param){
+
+
+    $str=explode('-',$param);
+    $result=$str[count($str)-1];
+
+    return $result;
+
+
+}
+
 
 
 

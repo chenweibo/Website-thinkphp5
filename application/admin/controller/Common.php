@@ -4,6 +4,7 @@ namespace app\admin\controller;
 
 use think\Controller;
 use think\Request;
+use app\admin\pinyin1;
 
 class Common extends Controller
 {
@@ -33,5 +34,17 @@ class Common extends Controller
             }
 
         }
+    }
+
+
+
+    public function routecteate($name){
+
+        $str = preg_replace('/[^a-zA-Z0-9\x7f-\xff]+/','',$name);
+        $ping =new pinyin1();
+        $fy=$ping->pinyin($str);
+
+        return $fy;
+
     }
 }

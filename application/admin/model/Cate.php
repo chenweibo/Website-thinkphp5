@@ -31,7 +31,7 @@ class Cate extends Model
     {
         try{
 
-            $result =  $this->save($param);
+            $result =  $this->validate('CateValidate')->save($param);
             if(false === $result){
                 // 验证失败 输出错误信息
                 return ['code' => -1, 'data' => '', 'msg' => $this->getError()];

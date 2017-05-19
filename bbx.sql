@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2017-05-17 16:18:30
+Date: 2017-05-19 17:08:30
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -30,16 +30,16 @@ CREATE TABLE `cate` (
   `cate_type` varchar(255) DEFAULT NULL,
   `cate_img` varchar(255) DEFAULT NULL,
   `cate_recommend` varchar(255) DEFAULT NULL,
-  `href` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of cate
 -- ----------------------------
-INSERT INTO `cate` VALUES ('1', '测试大类1', null, '88', '0', null, null, '1', null, null, '12');
-INSERT INTO `cate` VALUES ('2', '测试大类2', null, '88', '0', null, null, '1', null, null, '3');
-INSERT INTO `cate` VALUES ('11', '子分类', null, '88', '1', null, null, '1', null, null, null);
+INSERT INTO `cate` VALUES ('21', '测试分类', '', '99', '0', '0', 'ceshifenlei', '1', '', '0');
+INSERT INTO `cate` VALUES ('22', '子类2', '', '99', '21', '0-21', 'zilei2', '1', '', '0');
+INSERT INTO `cate` VALUES ('23', '子子类', '', '99', '22', '0-21-22', 'zizilei', '1', '', '0');
+INSERT INTO `cate` VALUES ('24', '子类2', '', '99', '0', '0', 'zilei2123', '1', '', '0');
 
 -- ----------------------------
 -- Table structure for content
@@ -163,7 +163,7 @@ CREATE TABLE `site` (
   `slide_type` varchar(255) DEFAULT NULL,
   `slide_a` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of site
@@ -175,6 +175,7 @@ INSERT INTO `site` VALUES ('47', null, null, null, null, null, null, null, null,
 INSERT INTO `site` VALUES ('48', null, null, null, null, null, null, null, null, null, null, '你是谁', '123', '', '', '');
 INSERT INTO `site` VALUES ('49', null, null, null, null, null, null, null, null, null, null, '1123', '0', '', '', '');
 INSERT INTO `site` VALUES ('51', null, null, null, null, null, null, null, null, null, null, '12', '0', '', '1', '');
+INSERT INTO `site` VALUES ('52', null, null, null, null, null, null, null, null, null, null, '12', '0', '', '1', '');
 
 -- ----------------------------
 -- Table structure for user
@@ -196,5 +197,5 @@ CREATE TABLE `user` (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('1', 'admin', '21232f297a57a5a743894a0e4a801fc3', '68', '127.0.0.1', '1494999954', 'admin', '1', '1');
+INSERT INTO `user` VALUES ('1', 'admin', '21232f297a57a5a743894a0e4a801fc3', '73', '127.0.0.1', '1495182385', 'admin', '1', '1');
 INSERT INTO `user` VALUES ('5', 'bobo', 'e10adc3949ba59abbe56e057f20f883e', '19', '127.0.0.1', '1494904744', '123', '1', '2');

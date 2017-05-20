@@ -19,7 +19,9 @@ class Common extends Controller
 
         if(request()->isAjax()){
 
-            $file = request()->file('image');
+
+
+            $file = request()->file('images');
 
 
 
@@ -35,6 +37,35 @@ class Common extends Controller
 
         }
     }
+
+
+    public  function uploadsedit(){
+
+
+
+            $file = request()->file('img');
+
+
+
+            $info = $file->rule('uniqid')->move(ROOT_PATH . 'public' . DS . 'uploads');
+            if($info){
+
+                return '/uploads/'.$info->getSaveName();
+
+            }else{
+                // 上传失败获取错误信息
+                return $file->getError();
+            }
+
+
+
+
+    }
+
+
+
+
+
 
 
 

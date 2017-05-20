@@ -37,7 +37,6 @@ class Product extends Controller
 
         if(request()->isPost()){
 
-
         $param = input('param.');
         $param = parseParams($param['data']);
         $param['pid']=explodepath($param['cate_path']);
@@ -86,12 +85,6 @@ class Product extends Controller
         $flag = $cate->delCate($id);
         return json(['code' => $flag['code'], 'data' => $flag['data'], 'msg' => $flag['msg']]);
     }
-
-
-
-
-
-
 
 
 

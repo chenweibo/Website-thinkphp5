@@ -17,6 +17,8 @@ return [
         '__JS__'     => '/static/admin/js',
         '__IMG__' => '/static/admin/images',
         '__UP__' => '/uploads',
+        '__ADMIN__' => '/static/admin',
+
 
     ),
 

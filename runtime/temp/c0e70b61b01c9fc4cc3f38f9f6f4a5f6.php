@@ -1,3 +1,4 @@
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:91:"C:\xampp\htdocs\Website-thinkphp5\public/../application/admin\view\product\contentlist.html";i:1495257569;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>

@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2017-05-19 17:08:30
+Date: 2017-05-20 17:21:00
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -31,15 +31,15 @@ CREATE TABLE `cate` (
   `cate_img` varchar(255) DEFAULT NULL,
   `cate_recommend` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of cate
 -- ----------------------------
-INSERT INTO `cate` VALUES ('21', '测试分类', '', '99', '0', '0', 'ceshifenlei', '1', '', '0');
-INSERT INTO `cate` VALUES ('22', '子类2', '', '99', '21', '0-21', 'zilei2', '1', '', '0');
-INSERT INTO `cate` VALUES ('23', '子子类', '', '99', '22', '0-21-22', 'zizilei', '1', '', '0');
-INSERT INTO `cate` VALUES ('24', '子类2', '', '99', '0', '0', 'zilei2123', '1', '', '0');
+INSERT INTO `cate` VALUES ('21', '测试分类1', '', '99', '0', '0', 'ceshifenlei', '1', '', '0');
+INSERT INTO `cate` VALUES ('23', '子子类', '', '99', '24', '0-21-24', 'zizilei', '1', '', '0');
+INSERT INTO `cate` VALUES ('24', '子类29', '23', '99', '21', '0-21', 'zilei29', '1', '', '1');
+INSERT INTO `cate` VALUES ('29', '测试', '', '99', '21', '0-21', 'ceshi', '1', '', '0');
 
 -- ----------------------------
 -- Table structure for content
@@ -197,5 +197,5 @@ CREATE TABLE `user` (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('1', 'admin', '21232f297a57a5a743894a0e4a801fc3', '73', '127.0.0.1', '1495182385', 'admin', '1', '1');
+INSERT INTO `user` VALUES ('1', 'admin', '21232f297a57a5a743894a0e4a801fc3', '76', '127.0.0.1', '1495259186', 'admin', '1', '1');
 INSERT INTO `user` VALUES ('5', 'bobo', 'e10adc3949ba59abbe56e057f20f883e', '19', '127.0.0.1', '1494904744', '123', '1', '2');

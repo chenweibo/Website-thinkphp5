@@ -30,7 +30,6 @@ class Product extends Controller
     public function cateAdd(){
 
         $cate= new Cate();
-
         $create=Cate::all();
         $Category = new Category();
         $data=$Category::unlimitedForLever($create,'--');
@@ -39,12 +38,12 @@ class Product extends Controller
         if(request()->isPost()){
 
 
-            $param = input('param.');
-            $param = parseParams($param['data']);
-            $param['pid']=explodepath($param['cate_path']);
-            $flag = $cate->insertCate($param);
+        $param = input('param.');
+        $param = parseParams($param['data']);
+        $param['pid']=explodepath($param['cate_path']);
+        $flag = $cate->insertCate($param);
 
-            return json(['code' => $flag['code'], 'data' => $flag['data'], 'msg' => $flag['msg']]);
+        return json(['code' => $flag['code'], 'data' => $flag['data'], 'msg' => $flag['msg']]);
 
         }
 
@@ -54,6 +53,24 @@ class Product extends Controller
 
     public function cateEdit(){
 
+        $cate= new Cate();
+        $id=input('id');
+        if(request()->isPost()){
+
+        $param = input('param.');
+        $param = parseParams($param['data']);
+        $param['pid']=explodepath($param['cate_path']);
+        $flag = $cate->editCate($param);
+        return json(['code' => $flag['code'], 'data' => $flag['data'], 'msg' => $flag['msg']]);
+
+        }
+
+        $create=$cate::all();
+        $Category = new Category();
+        $data=$Category::unlimitedForLever($create,'--');
+        $view=$cate->getoneCate($id);
+        $this->assign('view',$view);
+        $this->assign('data',$data);
 
 
 
@@ -61,13 +78,15 @@ class Product extends Controller
     }
 
 
-    public function cateDel(){
+    public function cateDel()
+    {
+        $id = input('param.id');
 
-
-
-
-        return $this->fetch();
+        $cate = new Cate();
+        $flag = $cate->delCate($id);
+        return json(['code' => $flag['code'], 'data' => $flag['data'], 'msg' => $flag['msg']]);
     }
+
 
 
 

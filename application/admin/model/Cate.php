@@ -23,6 +23,31 @@ class Cate extends Model
 
     }
 
+    public  function getCatewhere($where){
+
+
+        $result = db('cate')->where($where)->select();
+        return $result;
+
+
+    }
+
+
+
+    /**
+     * 获得一个分类
+     * @param $param
+     */
+
+    public  function getoneCate($id){
+
+
+        $result = db('cate')->where('id',$id)->find();
+        return $result;
+
+
+    }
+
     /**
      * 插入分类信息
      * @param $param
@@ -53,15 +78,27 @@ class Cate extends Model
     {
         try{
 
-            $result =  $this->save($param, ['id' => $param['id']]);
+            $result =  $this->validate('CateValidate')->save($param, ['id' => $param['id']]);
 
             if(false === $result){
                 // 验证失败 输出错误信息
                 return ['code' => 0, 'data' => '', 'msg' => $this->getError()];
             }else{
 
-                return ['code' => 1, 'data' => '', 'msg' => '编辑角色成功'];
+                return ['code' => 1, 'data' => '', 'msg' => '编辑分类成功'];
             }
+        }catch( PDOException $e){
+            return ['code' => 0, 'data' => '', 'msg' => $e->getMessage()];
+        }
+    }
+
+    public function delCate($id)
+    {
+        try{
+
+            $this->where('id', $id)->delete();
+            return ['code' => 1, 'data' => '', 'msg' => '删除分类成功'];
+
         }catch( PDOException $e){
             return ['code' => 0, 'data' => '', 'msg' => $e->getMessage()];
         }

@@ -78,14 +78,13 @@
 
 
 <script type="text/javascript">
-    
-    
+
 
 
     function a(d){
         var h='<ul>';
         for(var i=0;i<d.length;i++){
-            h+=' <li data-id="'+d[i].id+'"><span><i class="glyphicon glyphicon-leaf"></i>  '+d[i].name+'</span> <a href="./cateEdit?id='+d[i].id+'">编辑</a> <a href="'+d[i].id+'">删除</a>';
+            h+=' <li data-id="'+d[i].id+'"><span><i class="glyphicon glyphicon-leaf"></i>  '+d[i].name+'</span> <a href="./cateEdit?id='+d[i].id+'">编辑</a> <a onclick="cateDel('+d[i].id+')" href="#">删除</a>';
             if(d[i].children&&d[i].children.length>0){
                 h+=a(d[i].children)
             }
@@ -96,18 +95,37 @@
     }
 
     $(function() {
+        gettree();
+    });
+    
+    function gettree() {
+
         $.getJSON(
             './cate',
-            function(data) {
+            function (data) {
 
-
-               $('#tree').html(a(data));
-
-
+                $('#tree').html(a(data));
 
             }
         );
-    });
+
+    }
+
+    function cateDel(id){
+        layer.confirm('确认删除?', {icon: 3, title:'提示'}, function(index){
+            //do something
+            $.getJSON('./cateDel', {'id' : id}, function(res){
+                if(res.code == 1){
+                    layer.alert('删除成功');
+                    gettree();
+                }else{
+                    layer.alert('删除失败');
+                }
+            });
+
+            layer.close(index);
+        })
+    }
 
 
 

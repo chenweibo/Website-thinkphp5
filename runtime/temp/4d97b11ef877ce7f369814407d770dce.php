@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:90:"C:\xampp\htdocs\Website-thinkphp5\public/../application/admin\view\product\contentadd.html";i:1495265707;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:90:"C:\xampp\htdocs\Website-thinkphp5\public/../application/admin\view\product\contentadd.html";i:1495423292;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,6 +17,8 @@
     <link href="__CSS__/plugins/webuploader/webuploader.css" rel="stylesheet">
     <link rel="stylesheet" href="__CSS__/layui/css/layui.css"  media="all">
     <link rel="stylesheet" type="text/css" href="__ADMIN__/edit/css/wangEditor.min.css">
+    <link href="__CSS__/plugins/dropzone/basic.css" rel="stylesheet">
+    <link href="__CSS__/plugins/dropzone/dropzone.css" rel="stylesheet">
     <style>
 
         .layui-form-switch{
@@ -95,11 +97,14 @@
 
                         <div class="form-group">
                             <label class="col-sm-1 control-label">主要内容：</label>
-                            <div class="input-group col-sm-8">
+                            <div class="input-group col-sm-8" >
 
-                              <textarea id="textarea1" style="height: 400px">
-                               <p>请输入内容...</p>
-                            </textarea>
+
+                                    <div id="editor-trigger" style="height: 500px"><p>请输入内容</p></div>
+                                    <!-- <textarea id="editor-trigger" style="display:none;">
+                                        <p>请输入内容...</p>
+                                    </textarea> -->
+
 
                             </div>
                         </div>
@@ -156,6 +161,82 @@
                             <label id="targetwz" for="inputPassword" style="color:#f00" class="sr-only">*请选择文件</label>
                         </div>
 
+                        <div class="form-group">
+                            <label class="col-sm-1 control-label">下载：</label>
+                            <div class="col-md-4 input-group">
+                                <input id="lefile" type="file" name="image" style="display:none">
+                                <span class="input-group-addon" onclick="$('input[id=lefile]').click();" style="cursor: pointer; background-color: #e7e7e7"><i class="fa fa-folder-open"></i>选择</span>
+                                <input id="photoCover" name="down" class="form-control" type="text" value="" name="icon" >
+
+                                <span class="input-group-addon ut2" style="width:80px;cursor: pointer;pointer-events: auto;" ><i class="fa fa-folder-open"></i>点击上传</span>
+
+                            </div>
+                            <label id="targetwz" for="inputPassword" style="color:#f00" class="sr-only">*请选择文件</label>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-1 control-label">外链：</label>
+                            <div class="input-group col-sm-4">
+                                <input id="keywords" type="text" class="form-control" name="keywords"  aria-required="true">
+
+                            </div>
+
+                        </div>
+
+
+
+
+                        <div class="form-group">
+                            <label class="col-sm-1 control-label">关键词：</label>
+                            <div class="input-group col-sm-4">
+                                <input id="keywords" type="text" class="form-control" name="keywords"  aria-required="true">
+
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-1 control-label">描述：</label>
+                            <div class="input-group col-sm-4">
+                                <input id="description" type="text" class="form-control" name="description"  aria-required="true">
+
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-1 control-label">多图：</label>
+                            <div class="input-group col-sm-4">
+
+
+                                <div class="dropzone" id="myDropzone">
+                                    <div class="am-text-success dz-message">
+                                        将文件拖拽到此处<br>或点此打开文件管理器选择文件
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+
+                        <div class="form-group layui-form">
+
+
+
+                            <label class="col-sm-1 control-label">语言：</label>
+                            <div class=" col-sm-4">
+
+
+                                    <input type="radio" name="sex" value="中文" title="中文" checked="">
+                                    <input type="radio" name="sex" value="英文" title="英文">
+
+
+
+                            </div>
+
+                        </div>
+
 
 
                         <input type="hidden" name="cate_type" value="1">
@@ -188,12 +269,41 @@
 <script src="__JS__/plugins/layer/layer.min.js"></script>
 <script src="__JS__/plugins/validate/jquery.validate.min.js"></script>
 <script src="__JS__/plugins/validate/messages_zh.min.js"></script>
-
 <script src="__CSS__/layui/layui.js" charset="utf-8"></script>
+<script type="text/javascript" src="__ADMIN__/edit/js/wangEditor.min.js"></script>
+<script src="__JS__/plugins/dropzone/dropzone.js"></script>
 
-    <script type="text/javascript" src="__ADMIN__/edit/js/wangEditor.min.js"></script>
+    <script type="text/javascript">
+        Dropzone.autoDiscover = false;
+        var myDropzone = new Dropzone("#myDropzone", {
+            url: "/admin/common/uploads",
+            addRemoveLinks: true,
+            method: 'post',
+            filesizeBase: 10240,
+            paramName:'images',
+            sending: function(file, xhr, formData) {
+                formData.append("filesize", file.size);
+            },
+            init: function() {
+                this.on("success", function(file,data) {
+                   console.log("File " + data);
+                });
+                this.on("removedfile", function(file,data) {
+                    console.log("File " + data + "removed");
 
+                });
+
+
+        }
+
+
+
+        });
+    </script>
 <script type="text/javascript">
+
+
+
 
     //表单提交
     function toVaild(){
@@ -301,7 +411,7 @@
     });
 
 
-    var editor = new wangEditor('textarea1');
+    var editor = new wangEditor('editor-trigger');
 
     wangEditor.config.printLog = false;
     editor.config.uploadImgUrl = '/admin/common/uploadsedit';
@@ -384,5 +494,10 @@
 
     });
 </script>
+
+
+
+
+
 </body>
 </html>

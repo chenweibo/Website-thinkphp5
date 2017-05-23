@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2017-05-22 16:53:37
+Date: 2017-05-23 17:20:07
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -64,15 +64,17 @@ CREATE TABLE `content` (
   `cate_type` int(255) DEFAULT NULL,
   `click` int(255) DEFAULT NULL,
   `show` int(10) DEFAULT NULL,
+  `link` varchar(255) DEFAULT NULL,
+  `sort` int(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of content
 -- ----------------------------
-INSERT INTO `content` VALUES ('1', '测试1', null, null, null, null, null, null, null, null, null, null, null, null, null, '1', null, null);
-INSERT INTO `content` VALUES ('2', '测试2', null, null, null, null, null, null, null, null, null, null, null, null, null, '1', null, null);
-INSERT INTO `content` VALUES ('3', '测试3', null, null, null, null, null, null, null, null, null, null, null, null, null, '1', null, null);
+INSERT INTO `content` VALUES ('1', '测试1', null, null, null, null, null, null, null, null, null, null, null, null, null, '1', null, null, null, null);
+INSERT INTO `content` VALUES ('2', '测试2', null, null, null, null, null, null, null, null, null, null, null, null, null, '1', null, null, null, null);
+INSERT INTO `content` VALUES ('3', '测试3', null, null, null, null, null, null, null, null, null, null, null, null, null, '1', null, null, null, null);
 
 -- ----------------------------
 -- Table structure for node
@@ -197,5 +199,5 @@ CREATE TABLE `user` (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('1', 'admin', '21232f297a57a5a743894a0e4a801fc3', '80', '127.0.0.1', '1495420756', 'admin', '1', '1');
+INSERT INTO `user` VALUES ('1', 'admin', '21232f297a57a5a743894a0e4a801fc3', '82', '127.0.0.1', '1495530303', 'admin', '1', '1');
 INSERT INTO `user` VALUES ('5', 'bobo', 'e10adc3949ba59abbe56e057f20f883e', '19', '127.0.0.1', '1494904744', '123', '1', '2');

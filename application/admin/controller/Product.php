@@ -71,8 +71,6 @@ class Product extends Controller
         $this->assign('view',$view);
         $this->assign('data',$data);
 
-
-
         return $this->fetch();
     }
 
@@ -83,7 +81,9 @@ class Product extends Controller
 
         $cate = new Cate();
         $flag = $cate->delCate($id);
+
         return json(['code' => $flag['code'], 'data' => $flag['data'], 'msg' => $flag['msg']]);
+
     }
 
 

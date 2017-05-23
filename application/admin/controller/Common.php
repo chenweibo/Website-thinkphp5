@@ -21,7 +21,7 @@ class Common extends Controller
 
 
 
-            $file = request()->file('images');
+            $file = request()->file('image');
 
 
 
@@ -62,11 +62,52 @@ class Common extends Controller
 
     }
 
+    public  function uploadsmore(){
+
+
+        $file = request()->file('image');
+
+
+
+        $info = $file->rule('uniqid')->move(ROOT_PATH . 'public' . DS . 'uploads');
+        if($info){
+            $data['status']  = 200;
+            $data['msg']     = $info->getSaveName();
+
+            //图片原始名字
+
+            $data['details']['savename'] = $info->getSaveName();
+            $data['details']['savepath'] = '/uploads/'.$info->getSaveName();
+
+            return json($data);
+
+        }else{
+            // 上传失败获取错误信息
+            return $file->getError();
+        }
 
 
 
 
+    }
 
+   //删除文件
+    public function filedelete($path=""){
+
+           if(request()->isAjax())
+           {
+        $file="./uploads/".$path;
+
+        if(unlink($file))
+        {
+
+            return ['code'=>1 , 'msg'=>"图片删除成功"];
+        }
+
+    }
+
+
+    }
 
 
     public function routecteate($name){

@@ -6,6 +6,8 @@ use think\Controller;
 use think\Request;
 use app\admin\model\Cate;
 use app\admin\Category;
+use app\admin\model\Content;
+
 
 
 class Product extends Controller
@@ -93,13 +95,31 @@ class Product extends Controller
 
 
 
+      
+
+
+
         return $this->fetch();
     }
 
 
     public function contentAdd(){
 
+        $content= new Content();
+        $cate= new Cate();
+        $create=Cate::all();
+        $Category = new Category();
+        $data=$Category::unlimitedForLever($create,'--');
+        $this->assign('data',$data);
+         if(request()->isAjax()){
 
+             $param = input('param.');
+             $param = parseParams($param['data']);
+             $param['lid']=explodepath($param['path']);
+             $flag = $content->insertContent($param);
+             return json(['code' => $flag['code'], 'data' => $flag['data'], 'msg' => $flag['msg']]);
+
+         }
 
         return $this->fetch();
 

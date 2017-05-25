@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : localhost_3306
-Source Server Version : 100121
+Source Server         : fuck.io
+Source Server Version : 50505
 Source Host           : localhost:3306
 Source Database       : bbx
 
 Target Server Type    : MYSQL
-Target Server Version : 100121
+Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2017-05-23 21:06:40
+Date: 2017-05-25 17:09:35
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -39,7 +39,6 @@ CREATE TABLE `cate` (
 INSERT INTO `cate` VALUES ('21', '测试分类1', '', '99', '0', '0', 'ceshifenlei', '1', '', '0');
 INSERT INTO `cate` VALUES ('23', '子子类', '', '99', '24', '0-21-24', 'zizilei', '1', '', '0');
 INSERT INTO `cate` VALUES ('24', '子类29', '23', '99', '21', '0-21', 'zilei29', '1', '', '1');
-INSERT INTO `cate` VALUES ('29', '测试', '', '99', '21', '0-21', 'ceshi', '1', '', '0');
 
 -- ----------------------------
 -- Table structure for content
@@ -62,18 +61,19 @@ CREATE TABLE `content` (
   `description` varchar(255) DEFAULT NULL,
   `lang` varchar(255) DEFAULT NULL,
   `recommend` int(10) DEFAULT NULL,
-  `cate_type` int(255) DEFAULT NULL,
+  `type` int(255) DEFAULT NULL,
   `click` int(255) DEFAULT NULL,
   `show` int(10) DEFAULT NULL,
   `link` varchar(255) DEFAULT NULL,
   `sort` int(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of content
 -- ----------------------------
-INSERT INTO `content` VALUES ('18', '123123', '12312', '123123df', '21', '0-21', null, null, '', '', '', '', '', '', 'cn', '0', '1', null, '1', '', '99');
+INSERT INTO `content` VALUES ('24', 'dfvv', 'w', 'dfvv', '请选择', '请选择', null, null, 'qwe<p><br></p>', '', '<img src=\"5926961a6856a.jpg\"><img src=\"5926961d28360.jpg\">', '', '', '', 'cn', '0', '1', null, '1', '', '99');
+INSERT INTO `content` VALUES ('25', 'dfsf', 'ff', 'dfsf', '24', '0-21-24', null, null, '', '', '<img src=\"5926969526a0a.jpg\"><img src=\"59269697312bc.jpg\">', '', '', '', 'cn', '0', '1', null, '1', '', '99');
 
 -- ----------------------------
 -- Table structure for node
@@ -90,7 +90,7 @@ CREATE TABLE `node` (
   `style` varchar(155) DEFAULT '' COMMENT '菜单样式',
   `sort` int(50) DEFAULT '99',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=31 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=37 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of node
@@ -124,6 +124,12 @@ INSERT INTO `node` VALUES ('27', '删除幻灯片', 'admin', 'siteset', 'slidede
 INSERT INTO `node` VALUES ('28', '保存设置', 'admin', 'siteset', 'save', '1', '23', '', '99');
 INSERT INTO `node` VALUES ('29', '产品分类', 'admin', 'product', 'cate', '2', '16', '', '99');
 INSERT INTO `node` VALUES ('30', '产品列表', 'admin', 'product', 'contentlist', '2', '16', '', '99');
+INSERT INTO `node` VALUES ('31', '添加分类', 'admin', 'product', 'cateadd', '1', '29', '', '99');
+INSERT INTO `node` VALUES ('32', '编辑分类', 'admin', 'product', 'cateedit', '1', '29', '', '99');
+INSERT INTO `node` VALUES ('33', '删除分类', 'admin', 'product', 'catedel', '1', '29', '', '99');
+INSERT INTO `node` VALUES ('34', '添加产品', 'admin', 'product', 'contentadd', '1', '30', '', '99');
+INSERT INTO `node` VALUES ('35', '编辑产品', 'admin', 'product', 'contentedit', '1', '30', '', '99');
+INSERT INTO `node` VALUES ('36', '删除产品', 'admin', 'product', 'contentdel', '1', '30', '', '99');
 
 -- ----------------------------
 -- Table structure for role
@@ -198,5 +204,5 @@ CREATE TABLE `user` (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('1', 'admin', '21232f297a57a5a743894a0e4a801fc3', '83', '127.0.0.1', '1495538627', 'admin', '1', '1');
+INSERT INTO `user` VALUES ('1', 'admin', '21232f297a57a5a743894a0e4a801fc3', '91', '127.0.0.1', '1495677344', 'admin', '1', '1');
 INSERT INTO `user` VALUES ('5', 'bobo', 'e10adc3949ba59abbe56e057f20f883e', '19', '127.0.0.1', '1494904744', '123', '1', '2');

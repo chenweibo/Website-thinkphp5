@@ -8,6 +8,17 @@ use app\admin\pinyin1;
 
 class Common extends Controller
 {
+
+
+    public function _initialize()
+    {
+        if(empty(session('username'))){
+
+            $this->redirect(url('login/index'));
+        }
+
+
+    }
     /**
      * 显示资源列表
      *

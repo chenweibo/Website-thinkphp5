@@ -10,7 +10,7 @@ use app\admin\model\Content;
 
 
 
-class Product extends Controller
+class Product extends Base
 {
 
     public function cate(){
@@ -93,6 +93,43 @@ class Product extends Controller
     public function contentlist(){
 
 
+        if(request()->isAjax()){
+
+            $param = input('param.');
+
+            $limit = $param['pageSize'];
+            $offset = ($param['pageNumber'] - 1) * $limit;
+
+            $where = [];
+            if (isset($param['searchText']) && !empty($param['searchText'])) {
+                $where['username'] = ['like', '%' . $param['searchText'] . '%'];
+            }
+            $where['type'] = 1;
+            $content = new Content();
+            $selectResult = $content->getContentByWhere($where, $offset, $limit);
+
+            foreach($selectResult as $key=>$vo){
+
+
+                $operate = [
+                    '编辑' => url('Product/contentEdit', ['id' => $vo['id']]),
+                    '删除' => "javascript:contentDel('".$vo['id']."')"
+                ];
+
+                $check=$vo['show'];
+
+                $selectResult[$key]['operate'] = showOperate($operate);
+
+
+
+
+            }
+
+            $return['total'] = $content->getAllContent($where);  //总数据
+            $return['rows'] = $selectResult;
+
+            return json($return);
+        }
 
 
       
@@ -126,7 +163,19 @@ class Product extends Controller
     }
 
 
-    public function contentEdit(){
+    public function contentEdit($id){
+
+        $content= new Content();
+        $cate= new Cate();
+        $create=Cate::all();
+        $Category = new Category();
+        $data=$Category::unlimitedForLever($create,'--');
+        $view=Content::get($id);
+        $img=codeimg($view['moreimg']);
+        $this->assign('img',$img);
+        $this->assign('view',$view);
+        $this->assign('data',$data);
+        $this->assign('ppp',$view['moreimg']);
 
 
 

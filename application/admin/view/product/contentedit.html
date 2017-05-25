@@ -20,11 +20,9 @@
     <link href="__CSS__/plugins/dropzone/dropzone.css" rel="stylesheet">
     <style>
 
-
         .layui-form-switch{
             width:55px;
         }
-
 
     </style>
 </head>
@@ -53,7 +51,7 @@
                         <div class="form-group">
                             <label class="col-sm-1 control-label">名称：</label>
                             <div class="input-group col-sm-4">
-                                <input id="cate_name" type="text" class="form-control" name="name" required  aria-required="true">
+                                <input id="cate_name" type="text" value="{$view.name}" class="form-control" name="name" required  aria-required="true">
 
                             </div>
 
@@ -62,7 +60,7 @@
                         <div class="form-group">
                             <label class="col-sm-1 control-label">英文名称：</label>
                             <div class="input-group col-sm-4">
-                                <input id="cate_enname" type="text" class="form-control" name="enname"  aria-required="true">
+                                <input id="cate_enname" type="text" value="{$view.enname}" class="form-control" name="enname"  aria-required="true">
 
                             </div>
 
@@ -74,7 +72,7 @@
                             <div class="col-md-4 input-group">
 
 
-                                <input id="jt" name="rewrite" class="form-control" type="text" value="" required  aria-required="true"  >
+                                <input id="jt" name="rewrite" class="form-control" type="text" value="{$view.rewrite}" required  aria-required="true"  >
 
                                 <span class="input-group-addon shengcheng " style="width:80px;cursor: pointer;pointer-events: auto;" >自动生成</span>
 
@@ -91,7 +89,7 @@
                                     <option >请选择</option>
                                     {volist name="data" id="v"}
 
-                                    <option value="{$v.cate_path}-{$v.id}" >{$v.html}{$v.name}</option>
+                                    <option value="{$v.cate_path}-{$v.id}" {if condition="$view.lid eq $v.id"} selected="select" {if} >{$v.html}{$v.name}</option>
                                     {/volist}
                                 </select>
                             </div>
@@ -101,7 +99,7 @@
                         <div class="form-group">
                             <label class="col-sm-1 control-label">排序：</label>
                             <div class="input-group col-sm-1">
-                                <input id="site_sort" type="text" value="99" class="form-control" name="sort"  aria-required="true">
+                                <input id="site_sort" type="text" value="{$view.sort}" class="form-control" name="sort"  aria-required="true">
                             </div>
                         </div>
 
@@ -111,18 +109,12 @@
                             <div class="input-group col-sm-8" >
 
 
-                                    <div id="editor-trigger" style="height: 500px"><p>请输入内容</p></div>
-                                    <input type="hidden" name="info" class="info" value="">
+                                    <div id="editor-trigger" style="height: 500px"></div>
+                                    <input type="hidden" name="info" class="info" value="{$view.info}">
 
                             </div>
                         </div>
 
-                        <script type="text/javascript">
-
-
-
-
-                        </script>
 
                         <div class="form-group layui-form">
 
@@ -130,16 +122,16 @@
                             <label class="col-sm-1 control-label">推荐：</label>
                             <div class=" col-sm-1">
 
-                                <input type="checkbox"  lay-skin="switch" lay-filter="switchTest" lay-text="ON|OFF">
-                                <input type="hidden" class="cate_recommend" name="recommend" value="0">
+                                <input type="checkbox" {eq name="$view.recommend" value="1"}checked=""{/eq}  lay-skin="switch"  lay-filter="switchTest" lay-text="ON|OFF">
+                                <input type="hidden" class="cate_recommend" name="recommend" value="{$view.recommend}">
 
                             </div>
 
                             <label class=" control-label" style="float: left; margin-right: 15px">显示：</label>
                             <div class="input-group col-sm-1">
 
-                                <input type="checkbox" checked=""  lay-skin="switch" lay-filter="switchTestshow" lay-text="ON|OFF">
-                                <input type="hidden" class="show" name="show" value="1">
+                                <input type="checkbox" {eq name="$view.show" value="1"}checked=""{/eq} lay-skin="switch" lay-filter="switchTestshow" lay-text="ON|OFF">
+                                <input type="hidden" class="show" name="show" value="{$view.show}">
 
                             </div>
 
@@ -151,7 +143,7 @@
                             <div class="col-md-4 input-group">
                                 <input id="lefile" type="file" name="image" style="display:none">
                                 <span class="input-group-addon" onclick="$('input[id=lefile]').click();" style="cursor: pointer; background-color: #e7e7e7"><i class="fa fa-folder-open"></i>选择</span>
-                                <input id="photoCover" name="img" class="form-control" type="text" value="" name="icon" >
+                                <input id="photoCover" name="img" class="form-control" type="text" value="{$view.img}" name="icon" >
 
                                 <span class="input-group-addon ut2" style="width:80px;cursor: pointer;pointer-events: auto;" ><i class="fa fa-folder-open"></i>点击上传</span>
 
@@ -164,7 +156,7 @@
                             <div class="col-md-4 input-group">
                                 <input id="down" type="file" name="down" style="display:none">
                                 <span class="input-group-addon" onclick="$('input[id=down]').click();" style="cursor: pointer; background-color: #e7e7e7"><i class="fa fa-folder-open"></i>选择</span>
-                                <input id="photoCover1" name="down" class="form-control" type="text" value="" name="icon" >
+                                <input id="photoCover1" name="down" class="form-control" type="text" value="{$view.down}" name="icon" >
 
                                 <span class="input-group-addon dm" style="width:80px;cursor: pointer;pointer-events: auto;" ><i class="fa fa-folder-open"></i>点击上传</span>
 
@@ -177,7 +169,7 @@
                         <div class="form-group">
                             <label class="col-sm-1 control-label">外链：</label>
                             <div class="input-group col-sm-4">
-                                <input id="keywords" type="text" class="form-control" name="link"  aria-required="true">
+                                <input id="keywords" type="text" class="form-control" name="link" value="{$view.link}"  aria-required="true">
 
                             </div>
 
@@ -189,7 +181,7 @@
                         <div class="form-group">
                             <label class="col-sm-1 control-label">关键词：</label>
                             <div class="input-group col-sm-4">
-                                <input id="keywords" type="text" class="form-control" name="keywords"  aria-required="true">
+                                <input id="keywords" type="text" class="form-control" name="keywords" value="{$view.keywords}"  aria-required="true">
 
                             </div>
 
@@ -198,7 +190,7 @@
                         <div class="form-group">
                             <label class="col-sm-1 control-label">描述：</label>
                             <div class="input-group col-sm-4">
-                                <input id="description" type="text" class="form-control" name="description"  aria-required="true">
+                                <input id="description" type="text" class="form-control" name="description" value="{$view.description}"  aria-required="true">
 
                             </div>
 
@@ -208,14 +200,30 @@
                             <label class="col-sm-1 control-label">多图：</label>
                             <div class="input-group col-sm-4">
 
-
                                 <div class="dropzone" id="myDropzone">
+
+                                    {volist name="img" id="v"}
+                                    <div class="dz-preview dz-file-preview">
+                                        <div class="dz-image">
+                                            <img data-dz-thumbnail="" width="120" height="120" src="__UP__/{$v}" alt="">
+                                        </div>
+                                        <div class="dz-details">
+                                            <div class="dz-filename"><span data-dz-name></span></div>
+                                            <div class="dz-size" data-dz-size></div>
+
+                                        </div>
+
+                                        <a class="dz-remove move" data-img="{$v}"  data-dz-remove="">移除图片</a>
+                                    </div>
+                                    {/volist}
+
                                     <div class="am-text-success dz-message">
                                         将文件拖拽到此处<br>或点此打开文件管理器选择文件
                                     </div>
                                 </div>
                             </div>
-                            <input type="hidden" class="duotu" name="moreimg" value="">
+
+                            <input type="hidden" class="duotu" name="moreimg" value='{$ppp}'>
                         </div>
                         
 
@@ -231,8 +239,8 @@
                             <div class=" col-sm-4">
 
 
-                                    <input type="radio" name="lang" value="cn" title="中文" checked="">
-                                    <input type="radio" name="lang" value="en" title="英文">
+                                    <input type="radio" name="lang" value="cn" title="中文" {eq name="$view.lang" value="cn"}checked=""{/eq}>
+                                    <input type="radio" name="lang" value="en" title="英文" {eq name="$view.lang" value="en"}checked=""{/eq}>
 
 
 
@@ -280,6 +288,42 @@
     <script type="text/javascript">
 
 
+                $('.move').click(function () {
+
+
+                    var bb=$('.duotu').attr('value');
+                    var filename=$(this).data('img');
+                    var dt=$(this).parent();
+                    var cc=  '<img src="'+filename+'">';
+                    $('.duotu').attr('value',bb.replace(cc, ""));
+
+                    $.ajax({
+                        type:"POST",
+                        url:'/admin/common/filedelete',
+                        data:{'path' :filename },// 你的formid
+                        async: false,
+                        beforeSend:function(){
+                            jz = layer.load(0, {shade: false}); //0代表加载的风格，支持0-2
+                        },
+                        error: function(request) {
+                            layer.close(jz);
+                            dt.remove();
+                            swal("网络错误!", "", "error");
+                        },
+                        success: function(data) {
+                            //关闭加载层
+                            layer.close(jz);
+                             dt.remove();
+                            if(data.code == 1){
+                                swal(data.msg, "", "success");
+                            }else{
+
+                            }
+
+                        }
+                    });
+
+                });
 
         Dropzone.autoDiscover = false;
         var myDropzone = new Dropzone("#myDropzone", {
@@ -520,6 +564,7 @@
     };
 
     editor.create();
+    editor.$txt.html('{$view.info}');
 
 
 
@@ -527,14 +572,14 @@
 
 
 
-<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+
 <script>
     layui.use(['form', 'layedit', 'laydate'], function(){
         var form = layui.form()
             ,layer = layui.layer
 
 
-        //监听指定开关
+
         form.on('switch(switchTest)', function(data){
              $('.cate_recommend').attr('value',this.checked ? '1' : '0')
 

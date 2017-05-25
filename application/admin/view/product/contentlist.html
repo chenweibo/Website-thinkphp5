@@ -11,6 +11,10 @@
     <link href="__CSS__/animate.min.css" rel="stylesheet">
     <link href="__CSS__/style.min.css?v=4.1.0" rel="stylesheet">
     <link href="__CSS__/plugins/sweetalert/sweetalert.css" rel="stylesheet">
+    <link rel="stylesheet" href="__CSS__/layui/css/layui.css"  media="all">
+    <link href="__CSS__/other.css" rel="stylesheet">
+    <link href="__CSS__/plugins/bootstrap-switch/bootstrap-switch.min.css" rel="stylesheet">
+
 </head>
 <body class="gray-bg">
 <div class="wrapper wrapper-content animated fadeInRight">
@@ -60,11 +64,12 @@
                                     <thead>
 
                                     <th data-field="id">id</th>
-                                    <th data-field="slide_name">名称</th>
-                                    <th data-field="slide_name">分类</th>
-                                    <th data-field="slide_sort">排序</th>
-                                    <th data-field="slide_name">缩略图</th>
-                                    <th data-field="slide_name">显示</th>
+                                    <th data-field="name">名称</th>
+                                    <th data-field="catename">分类</th>
+                                    <th data-field="sort">排序</th>
+                                    <th class="dingwei"  data-field="showimg" style="123">缩略图</th>
+                                    <th data-field="check">显示</th>
+                                    <th data-field="recommend">推荐</th>
                                     <th data-field="operate">操作</th>
                                     </thead>
                                 </table>
@@ -77,7 +82,7 @@
             </div>
 
 
-   
+
 </div>
 <script src="__JS__/jquery.min.js?v=2.1.4"></script>
 <script src="__JS__/bootstrap.min.js?v=3.3.6"></script>
@@ -91,27 +96,26 @@
 <script src="__JS__/plugins/layer/laydate/laydate.js"></script>
 <script src="__JS__/plugins/sweetalert/sweetalert.min.js"></script>
 <script src="__JS__/plugins/layer/layer.min.js"></script>
-
+<script src="__CSS__/layui/layui.js" charset="utf-8"></script>
 
 <script type="text/javascript">
+
+
     function initTable() {
         //先销毁表格
         $('#cusTable').bootstrapTable('destroy');
         //初始化表格,动态从服务器加载数据
         $("#cusTable").bootstrapTable({
             method: "get",  //使用get请求到服务器获取数据
-            url: "./content", //获取数据的地址
+            url: "./contentlist", //获取数据的地址
             striped: true,  //表格显示条纹
             pagination: true, //启动分页
-//            showColumns: true,  //显示下拉框勾选要显示的列
-//            showRefresh: true,  //显示刷新按钮
-//           singleSelect : true, // 单选checkbox
             maintainSelected: true,
-
             pageSize: 10,  //每页显示的记录数
             pageNumber:1, //当前第几页
 //            showExport: true,//显示导出按钮
 //            exportDataType: "basic",//导出类型
+
             pageList: [5, 10, 15, 20, 25],  //记录数可选列表
             sidePagination: "server", //表示服务端请求
             //设置为undefined可以获取pageNumber，pageSize，searchText，sortName，sortOrder
@@ -126,12 +130,17 @@
                 };
                 return param;
             },
-            onLoadSuccess: function(){  //加载成功时执行
-             
-            },
+
             onLoadError: function(){  //加载失败时执行
                 layer.msg("加载数据失败");
-            }
+            },
+
+            columns : [{
+                field:"state",
+                checkbox:true,
+                align : 'center' ,
+
+            }]
         });
     }
 
@@ -140,11 +149,16 @@
 
 
     $(document).ready(function () {
+
+
         //调用函数，初始化表格
         initTable();
         initTable1();
         initTable2();
         //当点击查询按钮的时候执行
+
+
+
       
     });
 

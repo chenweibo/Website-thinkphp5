@@ -25,6 +25,9 @@ EOT;
     return $option;
 }
 
+
+
+
 /**
  * 将字符解析成数组
  * @param $str
@@ -34,6 +37,25 @@ function parseParams($str)
     $arrParams = [];
     parse_str(html_entity_decode(urldecode($str)), $arrParams);
     return $arrParams;
+}
+
+
+
+function codeimg($str){
+
+
+    $d=array_filter(explode('<img src="',$str));
+
+    foreach ($d as  $key=>$vo) {
+
+        $d[$key]=str_replace('">', '', $vo);
+
+    }
+
+
+   return $d;
+
+
 }
 
 /**
@@ -79,7 +101,7 @@ function make_tree($list,$pk='id',$pid='pid',$child='children',$root=0){
  * @return array
  */
 
-function explodepath($param){
+function  explodepath($param){
 
 
     $str=explode('-',$param);
@@ -89,6 +111,8 @@ function explodepath($param){
 
 
 }
+
+
 
 
 

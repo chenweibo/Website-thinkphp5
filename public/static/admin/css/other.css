@@ -67,3 +67,9 @@
 
 .tree li a{
     color: #999;}
+
+
+.suolue { border: 1px solid #f0f0f0; width: 30px; height: 30px; }
+.dingwei { position: relative; z-index:999; }
+.suolueft { border: 1px solid #000; position: absolute; top: -130px; left: 50px; width: 300px; height: 300px; display: none; }
+.suolue:hover + .suolueft { display: block; }

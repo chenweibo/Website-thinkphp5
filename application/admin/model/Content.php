@@ -28,5 +28,19 @@ class Content extends Model
     }
 
 
+    public function getContentByWhere($where, $offset, $limit)
+    {
+        return $this->field('content.*,cate.name as catename')
+            ->join('cate', 'content.lid = cate.id')
+            ->where($where)->limit($offset, $limit)->order('id desc')->select();
+    }
+
+
+    public function getAllContent($where)
+    {
+        return $this->where($where)->count();
+    }
+
+
 
 }

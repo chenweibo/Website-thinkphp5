@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2017-05-25 17:09:35
+Date: 2017-05-28 15:06:58
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -31,7 +31,7 @@ CREATE TABLE `cate` (
   `cate_img` varchar(255) DEFAULT NULL,
   `cate_recommend` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of cate
@@ -67,13 +67,13 @@ CREATE TABLE `content` (
   `link` varchar(255) DEFAULT NULL,
   `sort` int(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of content
 -- ----------------------------
-INSERT INTO `content` VALUES ('24', 'dfvv', 'w', 'dfvv', '请选择', '请选择', null, null, 'qwe<p><br></p>', '', '<img src=\"5926961a6856a.jpg\"><img src=\"5926961d28360.jpg\">', '', '', '', 'cn', '0', '1', null, '1', '', '99');
-INSERT INTO `content` VALUES ('25', 'dfsf', 'ff', 'dfsf', '24', '0-21-24', null, null, '', '', '<img src=\"5926969526a0a.jpg\"><img src=\"59269697312bc.jpg\">', '', '', '', 'cn', '0', '1', null, '1', '', '99');
+INSERT INTO `content` VALUES ('28', 'sdfds', 'dd', 'sdfds', '23', '0-21-24-23', null, null, '', '/uploads/592a6d17cd4fc.jpg', '', '', '', '', 'en', '0', '1', null, '1', '', '99');
+INSERT INTO `content` VALUES ('30', '测试', '', 'ceshi', '21', '0-21', null, null, '', '', '', '', '', '', 'cn', '0', '1', null, '1', '', '99');
 
 -- ----------------------------
 -- Table structure for node
@@ -204,5 +204,5 @@ CREATE TABLE `user` (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('1', 'admin', '21232f297a57a5a743894a0e4a801fc3', '91', '127.0.0.1', '1495677344', 'admin', '1', '1');
+INSERT INTO `user` VALUES ('1', 'admin', '21232f297a57a5a743894a0e4a801fc3', '93', '127.0.0.1', '1495938196', 'admin', '1', '1');
 INSERT INTO `user` VALUES ('5', 'bobo', 'e10adc3949ba59abbe56e057f20f883e', '19', '127.0.0.1', '1494904744', '123', '1', '2');

@@ -45,8 +45,8 @@
                     <form id='commentForm' role="form" method="post" class="form-inline">
                         <div class="content clearfix m-b">
                             <div class="form-group">
-                                <label>产品名称：</label>
-                                <input type="text" class="form-control" id="username" name="username">
+                                <label>管理员名称：</label>
+                                <input type="text" class="form-control" id="contentname" name="contentname">
                             </div>
                             <div class="form-group">
                                 <button class="btn btn-primary" type="button" style="margin-top:5px" id="search"><strong>搜 索</strong>
@@ -67,8 +67,8 @@
                                     <th data-field="name">名称</th>
                                     <th data-field="catename">分类</th>
                                     <th data-field="sort">排序</th>
-                                    <th class="dingwei"  data-field="showimg" style="123">缩略图</th>
-                                    <th data-field="check">显示</th>
+                                    <th data-field="img" >缩略图</th>
+                                    <th data-field="show">显示</th>
                                     <th data-field="recommend">推荐</th>
                                     <th data-field="operate">操作</th>
                                     </thead>
@@ -125,7 +125,7 @@
                 var param = {
                     pageNumber: params.pageNumber,
                     pageSize: params.pageSize,
-                    searchText:$('#username').val()
+                    searchText:$('#contentname').val()
                           
                 };
                 return param;
@@ -135,17 +135,14 @@
                 layer.msg("加载数据失败");
             },
 
-            columns : [{
-                field:"state",
-                checkbox:true,
-                align : 'center' ,
-
-            }]
+//            columns : [{
+//                field:"state",
+//                checkbox:true,
+//                align : 'center' ,
+//
+//            }]
         });
     }
-
-
-
 
 
     $(document).ready(function () {
@@ -153,19 +150,16 @@
 
         //调用函数，初始化表格
         initTable();
-        initTable1();
-        initTable2();
+        $("#search").bind("click", initTable);
         //当点击查询按钮的时候执行
 
 
-
-      
     });
 
-    function slideDel(id){
+    function contentDel(id){
         layer.confirm('确认删除?', {icon: 3, title:'提示'}, function(index){
             //do something
-            $.getJSON('./slideDel', {'id' : id}, function(res){
+            $.getJSON('./contentDel', {'id' : id}, function(res){
                 if(res.code == 1){
                     layer.alert('删除成功');
                     initTable();
@@ -178,7 +172,6 @@
         })
 
     }
-
 
 
 </script>

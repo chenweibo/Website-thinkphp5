@@ -5,6 +5,7 @@ namespace app\admin\controller;
 use think\Controller;
 use think\Request;
 use app\admin\pinyin1;
+use app\admin\model\Content;
 
 class Common extends Controller
 {
@@ -98,6 +99,8 @@ class Common extends Controller
 
 
     }
+
+
 
     public  function uploadsmore(){
 

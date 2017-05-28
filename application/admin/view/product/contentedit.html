@@ -27,6 +27,7 @@
     </style>
 </head>
 <body class="gray-bg">
+
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
         <div class="col-sm-12">
@@ -47,7 +48,7 @@
                 </div>
                 <div class="ibox-content">
                     <form class="form-horizontal m-t" id="commentForm" method="post" onsubmit="return toVaild()">
-
+                        <input type="hidden" name="id" value="{$view.id}">
                         <div class="form-group">
                             <label class="col-sm-1 control-label">名称：</label>
                             <div class="input-group col-sm-4">
@@ -225,9 +226,9 @@
 
                             <input type="hidden" class="duotu" name="moreimg" value='{$ppp}'>
                         </div>
-                        
 
-                        
+
+
 
 
 
@@ -411,7 +412,7 @@
                 //关闭加载层
                 layer.close(jz);
                 if(data.code == 1){
-                    window.location.href="./contentlist";
+                    window.location.href="{:url('product/contentlist')}";
                 }else{
                     swal(data.msg, "", "error");
                 }

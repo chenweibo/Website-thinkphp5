@@ -15,7 +15,8 @@ use think\Validate;
 class ContentValidate extends Validate
 {
     protected $rule = [
-        ['rewrite', 'unique:content', '数据库存在相同伪静态']
+        ['rewrite', 'unique:content', '数据库存在相同伪静态'],
+
     ];
 
 }

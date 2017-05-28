@@ -32,7 +32,7 @@ class Content extends Model
     {
         return $this->field('content.*,cate.name as catename')
             ->join('cate', 'content.lid = cate.id')
-            ->where($where)->limit($offset, $limit)->order('id desc')->select();
+            ->where($where)->limit($offset, $limit)->order('id asc')->select();
     }
 
 
@@ -41,6 +41,38 @@ class Content extends Model
         return $this->where($where)->count();
     }
 
+
+
+    public function editContent($param)
+    {
+        try{
+
+            $result =  $this->validate('ContentValidate')->save($param, ['id' => $param['id']]);
+
+            if(false === $result){
+                // 验证失败 输出错误信息
+                return ['code' => 0, 'data' => '', 'msg' => $this->getError()];
+            }else{
+
+                return ['code' => 1, 'data' => '', 'msg' => '编辑分类成功'];
+            }
+        }catch( PDOException $e){
+            return ['code' => 0, 'data' => '', 'msg' => $e->getMessage()];
+        }
+    }
+
+
+    public function delContent($id)
+    {
+        try{
+
+            $this->where('id', $id)->delete();
+            return ['code' => 1, 'data' => '', 'msg' => '删除成功'];
+
+        }catch( PDOException $e){
+            return ['code' => 0, 'data' => '', 'msg' => $e->getMessage()];
+        }
+    }
 
 
 }

@@ -15,7 +15,10 @@ use think\Validate;
 class CateValidate extends Validate
 {
     protected $rule = [
-        ['cate_rewrite', 'unique:cate', '数据库存在相同伪静态']
+
+         ['cate_rewrite', 'unique:cate', '数据库存在相同伪静态']
+
+
     ];
 
 }

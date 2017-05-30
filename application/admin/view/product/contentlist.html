@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>添加管理员</title>
+    <title>内容页</title>
     <link rel="shortcut icon" href="favicon.ico">
     <link href="__CSS__/bootstrap.min.css?v=3.3.6" rel="stylesheet">
     <link href="__CSS__/font-awesome.min.css?v=4.4.0" rel="stylesheet">
@@ -39,13 +39,15 @@
 
 
                         <div class="form-group clearfix col-sm-1">
-                            <a href="./contentAdd?type=1"><button class="btn btn-outline btn-primary" type="button">添加产品 </button></a>
+                            <a href="{:url('product/contentAdd',['type'=>1, 'tid'=>$tid])}"><button class="btn btn-outline btn-primary" type="button">添加产品 </button></a>
                         </div>
+
+
                     <!--搜索框开始-->
                     <form id='commentForm' role="form" method="post" class="form-inline">
                         <div class="content clearfix m-b">
                             <div class="form-group">
-                                <label>管理员名称：</label>
+                                <label>产品名称：</label>
                                 <input type="text" class="form-control" id="contentname" name="contentname">
                             </div>
                             <div class="form-group">
@@ -60,7 +62,7 @@
 
                         <div class="example-wrap">
                             <div class="example">
-                                <table id="cusTable" data-height="700">
+                                <table id="cusTable" data-height="560">
                                     <thead>
 
                                     <th data-field="id">id</th>
@@ -115,7 +117,19 @@
             pageNumber:1, //当前第几页
 //            showExport: true,//显示导出按钮
 //            exportDataType: "basic",//导出类型
+            selectItemName:'rad',
+            onCheck: function (id) {
 
+                console.log('点击了'+id.id)
+           },
+           onUncheck: function (id) {
+                 console.log('取消了'+id.id)
+        }, onCheckAll: function (id) {
+                console.log('点击'+id)
+            },
+            onUncheckAll: function (id) {
+                console.log('全部取消了'+id)
+            },
             pageList: [5, 10, 15, 20, 25],  //记录数可选列表
             sidePagination: "server", //表示服务端请求
             //设置为undefined可以获取pageNumber，pageSize，searchText，sortName，sortOrder
@@ -128,19 +142,21 @@
                     searchText:$('#contentname').val()
                           
                 };
+
                 return param;
             },
+
 
             onLoadError: function(){  //加载失败时执行
                 layer.msg("加载数据失败");
             },
 
-//            columns : [{
-//                field:"state",
-//                checkbox:true,
-//                align : 'center' ,
-//
-//            }]
+            columns : [{
+                field:"index",
+                checkbox:true,
+                align : 'center' ,
+
+            }]
         });
     }
 
@@ -153,13 +169,13 @@
         $("#search").bind("click", initTable);
         //当点击查询按钮的时候执行
 
-
     });
 
     function contentDel(id){
         layer.confirm('确认删除?', {icon: 3, title:'提示'}, function(index){
+            var link="{:url('product/contentDel')}";
             //do something
-            $.getJSON('./contentDel', {'id' : id}, function(res){
+            $.getJSON(link, {'id' : id}, function(res){
                 if(res.code == 1){
                     layer.alert('删除成功');
                     initTable();

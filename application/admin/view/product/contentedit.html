@@ -90,7 +90,7 @@
                                     <option >请选择</option>
                                     {volist name="data" id="v"}
 
-                                    <option value="{$v.cate_path}-{$v.id}" {if condition="$view.lid eq $v.id"} selected="select" {if} >{$v.html}{$v.name}</option>
+                                    <option value="{$v.cate_path}-{$v.id}" {if condition="$view.lid eq $v.id"} selected="select" {/if} >{$v.html}{$v.name}</option>
                                     {/volist}
                                 </select>
                             </div>

@@ -153,8 +153,9 @@ class Product extends Base
             return json($return);
         }
 
+           $this->assign('tid',input('tid'));
 
-        return $this->fetch();
+           return $this->fetch();
     }
 
 
@@ -166,13 +167,16 @@ class Product extends Base
         $Category = new Category();
         $data=$Category::unlimitedForLever($create,'--');
         $this->assign('data',$data);
-         if(request()->isAjax()){
+        $this->assign('tid',input('tid'));
+
+
+         if(request()->isPost()){
 
          $param = input('param.');
          $param = parseParams($param['data']);
          $param['lid']=explodepath($param['path']);
          $flag = $content->insertContent($param);
-         return json(['code' => $flag['code'], 'data' => $flag['data'], 'msg' => $flag['msg']]);
+         return json(['code' => $flag['code'], 'tid' =>$param['lid'] , 'data' => $flag['data'], 'msg' => $flag['msg']]);
 
          }
 

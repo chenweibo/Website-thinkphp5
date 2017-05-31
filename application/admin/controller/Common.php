@@ -51,6 +51,31 @@ class Common extends Controller
     }
 
 
+    public  function uploadsother(){
+
+
+
+
+
+
+             $type=input('type');
+             $file = request()->file($type);
+            $info = $file->rule('uniqid')->move(ROOT_PATH . 'public' . DS . 'uploads');
+            if($info){
+
+                return $info->getSaveName();
+
+            }else{
+                // 上传失败获取错误信息
+                return $file->getError();
+            }
+
+
+
+        }
+
+
+
     public  function uploadsdown(){
 
 
@@ -159,4 +184,7 @@ class Common extends Controller
         return $fy;
 
     }
+
+
+
 }

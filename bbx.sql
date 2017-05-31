@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : localhost_3306
-Source Server Version : 100121
+Source Server         : fuck.io
+Source Server Version : 50505
 Source Host           : localhost:3306
 Source Database       : bbx
 
 Target Server Type    : MYSQL
-Target Server Version : 100121
+Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2017-05-30 21:22:18
+Date: 2017-05-31 17:20:10
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -67,57 +67,52 @@ CREATE TABLE `content` (
   `show` int(10) DEFAULT NULL,
   `link` varchar(255) DEFAULT NULL,
   `sort` int(50) DEFAULT NULL,
+  `cs` varchar(255) DEFAULT NULL,
+  `hjgs` varchar(255) DEFAULT NULL,
+  `wj` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=76 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=77 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of content
 -- ----------------------------
-INSERT INTO `content` VALUES ('31', '123', '23', '123', '21', '0-21', null, null, '<p>请输入内容</p><p>12<br></p>', '', '', '', '', '', 'cn', '0', '1', null, '1', '', '99');
-INSERT INTO `content` VALUES ('32', '12333123', '22313', '12333123', '21', '0-21', null, null, '', '', '', '', '', '', 'cn', '0', '1', null, '1', '', '99');
-INSERT INTO `content` VALUES ('33', 'qweqwe', 'qwe', 'qweqwe', '24', '0-21-24', null, null, '', '', '', '', '', '', 'cn', '0', '1', null, '1', '', '99');
-INSERT INTO `content` VALUES ('34', 'jk;po', '', 'jkpo', '23', '0-21-24-23', null, null, '', '', '', '', '', '', 'cn', '0', '1', null, '1', '', '99');
-INSERT INTO `content` VALUES ('35', 'fdfsdfdasf', '', 'fdfsdfdasf', '24', '0-21-24', null, null, '', '', '', '', '', '', 'cn', '0', '1', null, '1', '', '99');
-INSERT INTO `content` VALUES ('36', 'sdfsdfsdf', 'sdf', 'sdfsdfsdf', '23', '0-21-24-23', null, null, '', '', '', '', '', '', 'cn', '0', '1', null, '1', '', '99');
-INSERT INTO `content` VALUES ('37', '123123fv', '', '123123fv', '21', '0-21', null, null, '', '', '', '', '', '', 'cn', '0', '1', null, '1', '', '99');
-INSERT INTO `content` VALUES ('38', '123123ffg', '', '123123ffg', '23', '0-21-24-23', null, null, '', '', '', '', '', '', 'cn', '0', '1', null, '1', '', '99');
-INSERT INTO `content` VALUES ('39', '123123', '123123', '123123', '24', '0-21-24', null, null, '', '', '', '', '', '', 'cn', '0', '1', null, '1', '', '99');
-INSERT INTO `content` VALUES ('40', '123123zc', '', '123123zc', '21', '0-21', null, null, '', '', '', '', '', '', 'cn', '0', '1', null, '1', '', '99');
-INSERT INTO `content` VALUES ('41', '234234ddd', '', '234234ddd', '21', '0-21', null, null, '', '', '', '', '', '', 'cn', '0', '1', null, '1', '', '99');
-INSERT INTO `content` VALUES ('42', '123', '213', '123fgf', '24', '0-21-24', null, null, '', '', '', '', '', '', 'cn', '0', '1', null, '1', '', '99');
-INSERT INTO `content` VALUES ('43', '123123', 'fff', 'fdgsa', '24', '0-21-24', null, null, '', '', '', '', '', '', 'cn', '0', '1', null, '1', '', '99');
-INSERT INTO `content` VALUES ('44', '1232', '', '1232', '24', '0-21-24', null, null, '<p>请输入内容</p><p>ffffdsf<br></p>', '', '', '', '', '', 'cn', '0', '1', null, '1', '', '99');
-INSERT INTO `content` VALUES ('45', '123dsfsdfasf', '', '123dsfsdfasf', '21', '0-21', null, null, '', '', '', '', '', '', 'cn', '0', '1', null, '1', '', '99');
-INSERT INTO `content` VALUES ('46', 'fdcsxbvsdc', 'sdfg', 'fdcsxbvsdc', '23', '0-21-24-23', null, null, '', '', '', '', '', '', 'cn', '0', '1', null, '1', '', '99');
-INSERT INTO `content` VALUES ('47', '123123asd', 'wef', '123123asd', '21', '0-21', null, null, '<p>请输入内容</p><p>asdfasdf<br></p>', '', '', '', '', '', 'cn', '0', '1', null, '1', '', '99');
-INSERT INTO `content` VALUES ('48', 'fgsdhfgdhfgdh', '', 'fdghfgdh', '23', '0-21-24-23', null, null, '', '', '', '', '', '', 'cn', '0', '1', null, '1', '', '99');
-INSERT INTO `content` VALUES ('49', 'asdfasdf', '', 'asdfasdf', '24', '0-21-24', null, null, '', '', '', '', '', '', 'cn', '0', '1', null, '1', '', '99');
-INSERT INTO `content` VALUES ('50', 'sdfsdfsadfvr', '', 'sdfsdfsadfvr', '24', '0-21-24', null, null, '', '', '', '', '', '', 'cn', '0', '1', null, '1', '', '99');
-INSERT INTO `content` VALUES ('51', 'asdfasdf234', 'sdfasdf', 'asdf', '请选择', '请选择', null, null, '', '', '', '', '', '', 'cn', '0', '1', null, '1', '', '99');
-INSERT INTO `content` VALUES ('52', 'sdf1234', '', 'sdf1234', '24', '0-21-24', null, null, '', '', '', '', '', '', 'cn', '0', '1', null, '1', '', '99');
-INSERT INTO `content` VALUES ('53', 'fsdgasdf', '', 'fsdgasdf', '21', '0-21', null, null, '', '', '', '', '', '', 'cn', '0', '1', null, '1', '', '99');
-INSERT INTO `content` VALUES ('54', '单位收发室', '', 'danweishoufashi', '21', '0-21', null, null, '', '', '', '', '', '', 'cn', '0', '1', null, '1', '', '99');
-INSERT INTO `content` VALUES ('55', '123123ccv', '', '123123ccv', '21', '0-21', null, null, '', '', '', '', '', '', 'cn', '0', '1', null, '1', '', '99');
-INSERT INTO `content` VALUES ('56', 'fvdxcv', '', 'fvdxcv', '24', '0-21-24', null, null, '', '', '', '', '', '', 'cn', '0', '1', null, '1', '', '99');
-INSERT INTO `content` VALUES ('57', '90k', '', '90k', '23', '0-21-24-23', null, null, '', '', '', '', '', '', 'cn', '0', '1', null, '1', '', '99');
-INSERT INTO `content` VALUES ('58', 'cxcvsdfqwe', '', 'cxcvsdfqwe', '24', '0-21-24', null, null, '', '', '', '', '', '', 'cn', '0', '1', null, '1', '', '99');
-INSERT INTO `content` VALUES ('59', '123123ccv', 'fdsf', '123123ccvgg', '21', '0-21', null, null, '', '', '', '', '', '', 'cn', '0', '1', null, '1', '', '99');
-INSERT INTO `content` VALUES ('60', '123123', '123123', '123fsdfsdf', '24', '0-21-24', null, null, '', '', '', '', '', '', 'cn', '0', '1', null, '1', '', '99');
-INSERT INTO `content` VALUES ('61', 'sdfsdf', 'dsfsdf', 'dfsdfsdffdff', '24', '0-21-24', null, null, '', '', '', '', '', '', 'cn', '0', '1', null, '1', '', '99');
-INSERT INTO `content` VALUES ('62', '下次v这些', '', 'xiacivzhexie', '24', '0-21-24', null, null, '<p>请输入内容</p><p>士大夫士大夫<br></p>', '', '', '', '', '', 'cn', '0', '1', null, '1', '', '99');
-INSERT INTO `content` VALUES ('63', '方法士大夫', '', 'fangfashidafu', '24', '0-21-24', null, null, '', '', '', '', '', '', 'cn', '0', '1', null, '1', '', '99');
-INSERT INTO `content` VALUES ('64', '发的2313', '', 'fade2313', '23', '0-21-24-23', null, null, '', '', '', '', '', '', 'cn', '0', '1', null, '1', '', '99');
-INSERT INTO `content` VALUES ('65', '123123防守打法', '', '123123fangshoudafa', '23', '0-21-24-23', null, null, '', '', '', '', '', '', 'cn', '0', '1', null, '1', '', '99');
-INSERT INTO `content` VALUES ('66', '123非法所得', '', '123feifasuode', '25', '0-25', null, null, '', '', '', '', '', '', 'cn', '0', '1', null, '1', '', '99');
-INSERT INTO `content` VALUES ('67', '似的发射点', '', 'sidefashedian', '24', '0-21-24', null, null, '', '', '', '', '', '', 'cn', '0', '1', null, '1', '', '99');
-INSERT INTO `content` VALUES ('68', '似的发射点得到得到', '', 'sidefashediandedaodedao', '24', '0-21-24', null, null, '', '', '', '', '', '', 'cn', '0', '1', null, '1', '', '99');
-INSERT INTO `content` VALUES ('69', 'sdfds ', 'sdf sdf', 'sdfdstfg', '24', '0-21-24', null, null, '', '', '', '', '', '', 'cn', '0', '1', null, '1', '', '99');
-INSERT INTO `content` VALUES ('70', '65ufq', '', '65ufq', '24', '0-21-24', null, null, '', '', '', '', '', '', 'cn', '0', '1', null, '1', '', '99');
-INSERT INTO `content` VALUES ('71', 'gvvx', '', 'gvvx', '23', '0-21-24-23', null, null, '', '', '', '', '', '', 'cn', '0', '1', null, '1', '', '99');
-INSERT INTO `content` VALUES ('72', '东风风神', '', 'dongfengfengshen', '25', '0-25', null, null, '', '', '', '', '', '', 'cn', '0', '1', null, '1', '', '99');
-INSERT INTO `content` VALUES ('73', '12认识的发生的', '', '12renshidefashengde', '24', '0-21-24', null, null, '<p>请输入内容士大夫</p><p><br></p>', '', '', '', '', '', 'cn', '0', '1', null, '1', '', '99');
-INSERT INTO `content` VALUES ('74', '反对法', '', 'fanduifa', '23', '0-21-24-23', null, null, '', '', '', '', '', '', 'cn', '0', '1', null, '1', '', '99');
-INSERT INTO `content` VALUES ('75', '发生的', '得到', 'fashengde', '21', '0-21', null, null, '', '', '', '', '', '', 'cn', '0', '1', null, '1', '', '99');
+INSERT INTO `content` VALUES ('40', '123123zc5', '', '123123zc', '21', '0-21', null, null, '', '', '', '', '', '', 'cn', '0', '1', null, '1', '', '99', null, null, null);
+INSERT INTO `content` VALUES ('41', '234234ddd', '', '234234ddd', '21', '0-21', null, null, '', '', '', '', '', '', 'cn', '0', '1', null, '1', '', '99', null, null, null);
+INSERT INTO `content` VALUES ('42', '123', '213', '123fgf', '24', '0-21-24', null, null, '', '', '', '', '', '', 'cn', '0', '1', null, '1', '', '99', null, null, null);
+INSERT INTO `content` VALUES ('43', '123123', 'fff', 'fdgsa', '24', '0-21-24', null, null, '', '', '', '', '', '', 'cn', '0', '1', null, '1', '', '99', null, null, null);
+INSERT INTO `content` VALUES ('44', '1232', '', '1232', '24', '0-21-24', null, null, '<p>请输入内容</p><p>ffffdsf<br></p>', '', '', '', '', '', 'cn', '0', '1', null, '1', '', '99', null, null, null);
+INSERT INTO `content` VALUES ('45', '123dsfsdfasf', '', '123dsfsdfasf', '21', '0-21', null, null, '', '', '', '', '', '', 'cn', '0', '1', null, '1', '', '99', null, null, null);
+INSERT INTO `content` VALUES ('46', 'fdcsxbvsdc', 'sdfg', 'fdcsxbvsdc', '23', '0-21-24-23', null, null, '', '', '', '', '', '', 'cn', '0', '1', null, '1', '', '99', null, null, null);
+INSERT INTO `content` VALUES ('47', '123123asd', 'wef', '123123asd', '21', '0-21', null, null, '<p>请输入内容</p><p>asdfasdf<br></p>', '', '', '', '', '', 'cn', '0', '1', null, '1', '', '99', null, null, null);
+INSERT INTO `content` VALUES ('48', 'fgsdhfgdhfgdh', '', 'fdghfgdh', '23', '0-21-24-23', null, null, '', '', '', '', '', '', 'cn', '0', '1', null, '1', '', '99', null, null, null);
+INSERT INTO `content` VALUES ('49', 'asdfasdf', '', 'asdfasdf', '24', '0-21-24', null, null, '', '', '', '', '', '', 'cn', '0', '1', null, '1', '', '99', null, null, null);
+INSERT INTO `content` VALUES ('50', 'sdfsdfsadfvr', '', 'sdfsdfsadfvr', '24', '0-21-24', null, null, '', '', '', '', '', '', 'cn', '0', '1', null, '1', '', '99', null, null, null);
+INSERT INTO `content` VALUES ('51', 'asdfasdf234', 'sdfasdf', 'asdf', '请选择', '请选择', null, null, '', '', '', '', '', '', 'cn', '0', '1', null, '1', '', '99', null, null, null);
+INSERT INTO `content` VALUES ('52', 'sdf1234', '', 'sdf1234', '24', '0-21-24', null, null, '', '', '', '', '', '', 'cn', '0', '1', null, '1', '', '99', null, null, null);
+INSERT INTO `content` VALUES ('53', 'fsdgasdf', '', 'fsdgasdf', '21', '0-21', null, null, '', '', '', '', '', '', 'cn', '0', '1', null, '1', '', '99', null, null, null);
+INSERT INTO `content` VALUES ('54', '单位收发室', '', 'danweishoufashi', '21', '0-21', null, null, '', '', '', '', '', '', 'cn', '0', '1', null, '1', '', '99', null, null, null);
+INSERT INTO `content` VALUES ('55', '123123ccv', '', '123123ccv', '21', '0-21', null, null, '', '', '', '', '', '', 'cn', '0', '1', null, '1', '', '99', null, null, null);
+INSERT INTO `content` VALUES ('56', 'fvdxcv', '', 'fvdxcv', '24', '0-21-24', null, null, '', '', '', '', '', '', 'cn', '0', '1', null, '1', '', '99', null, null, null);
+INSERT INTO `content` VALUES ('57', '90k', '', '90k', '23', '0-21-24-23', null, null, '', '', '', '', '', '', 'cn', '0', '1', null, '1', '', '99', null, null, null);
+INSERT INTO `content` VALUES ('58', 'cxcvsdfqwe', '', 'cxcvsdfqwe', '24', '0-21-24', null, null, '', '', '', '', '', '', 'cn', '0', '1', null, '1', '', '99', null, null, null);
+INSERT INTO `content` VALUES ('59', '123123ccv', 'fdsf', '123123ccvgg', '21', '0-21', null, null, '', '', '', '', '', '', 'cn', '0', '1', null, '1', '', '99', null, null, null);
+INSERT INTO `content` VALUES ('60', '123123', '123123', '123fsdfsdf', '24', '0-21-24', null, null, '', '', '', '', '', '', 'cn', '0', '1', null, '1', '', '99', null, null, null);
+INSERT INTO `content` VALUES ('61', 'sdfsdf', 'dsfsdf', 'dfsdfsdffdff', '24', '0-21-24', null, null, '', '', '', '', '', '', 'cn', '0', '1', null, '1', '', '99', null, null, null);
+INSERT INTO `content` VALUES ('62', '下次v这些', '', 'xiacivzhexie', '24', '0-21-24', null, null, '<p>请输入内容</p><p>士大夫士大夫<br></p>', '', '', '', '', '', 'cn', '0', '1', null, '1', '', '99', null, null, null);
+INSERT INTO `content` VALUES ('63', '方法士大夫', '', 'fangfashidafu', '24', '0-21-24', null, null, '', '', '', '', '', '', 'cn', '0', '1', null, '1', '', '99', null, null, null);
+INSERT INTO `content` VALUES ('64', '发的2313', '', 'fade2313', '23', '0-21-24-23', null, null, '', '', '', '', '', '', 'cn', '0', '1', null, '1', '', '99', null, null, null);
+INSERT INTO `content` VALUES ('65', '123123防守打法', '', '123123fangshoudafa', '23', '0-21-24-23', null, null, '', '', '', '', '', '', 'cn', '0', '1', null, '1', '', '99', null, null, null);
+INSERT INTO `content` VALUES ('66', '123非法所得', '', '123feifasuode', '25', '0-25', null, null, '', '', '', '', '', '', 'cn', '0', '1', null, '1', '', '99', null, null, null);
+INSERT INTO `content` VALUES ('67', '似的发射点', '', 'sidefashedian', '24', '0-21-24', null, null, '', '', '', '', '', '', 'cn', '0', '1', null, '1', '', '99', null, null, null);
+INSERT INTO `content` VALUES ('68', '似的发射点得到得到', '', 'sidefashediandedaodedao', '24', '0-21-24', null, null, '', '', '', '', '', '', 'cn', '0', '1', null, '1', '', '99', null, null, null);
+INSERT INTO `content` VALUES ('69', 'sdfds ', 'sdf sdf', 'sdfdstfg', '24', '0-21-24', null, null, '', '', '', '', '', '', 'cn', '0', '1', null, '1', '', '99', null, null, null);
+INSERT INTO `content` VALUES ('70', '65ufq', '', '65ufq', '24', '0-21-24', null, null, '', '', '', '', '', '', 'cn', '0', '1', null, '1', '', '99', null, null, null);
+INSERT INTO `content` VALUES ('71', 'gvvx', '', 'gvvx', '23', '0-21-24-23', null, null, '', '', '', '', '', '', 'cn', '0', '1', null, '1', '', '99', null, null, null);
+INSERT INTO `content` VALUES ('72', '东风风神', '', 'dongfengfengshen', '25', '0-25', null, null, '', '', '', '', '', '', 'cn', '0', '1', null, '1', '', '99', null, null, null);
+INSERT INTO `content` VALUES ('73', '12认识的发生的', '', '12renshidefashengde', '24', '0-21-24', null, null, '<p>请输入内容士大夫</p><p><br></p>', '', '', '', '', '', 'cn', '0', '1', null, '1', '', '99', null, null, null);
+INSERT INTO `content` VALUES ('74', '反对法', '', 'fanduifa', '23', '0-21-24-23', null, null, '', '', '', '', '', '', 'cn', '0', '1', null, '1', '', '99', null, null, null);
+INSERT INTO `content` VALUES ('75', '发生的', '得到', 'fashengde', '21', '0-21', null, null, '', '', '', '', '', '', 'cn', '0', '1', null, '1', '', '99', null, null, null);
+INSERT INTO `content` VALUES ('76', '12213饿撒地方', '', '12213esadifang', '23', '0-21-24-23', null, null, '<p>撒地方三大打点滴搜索</p><p><br></p>', '/uploads/592e7aa0e8c32.jpg', '<img src=\"592e7aa631da1.jpg\"><img src=\"592e7aa826704.jpg\">', '/uploads/592e7aa3c1608.jpg', '', '', 'cn', '0', '1', null, '1', '', '99', '', '<p>撒地方三大啊</p><p><br></p>', '/uploads/592e7a9de7cfa.jpg');
 
 -- ----------------------------
 -- Table structure for field
@@ -128,14 +123,17 @@ CREATE TABLE `field` (
   `name` varchar(255) DEFAULT NULL,
   `fieldname` varchar(255) DEFAULT NULL,
   `at_type` varchar(255) DEFAULT NULL,
-  `sort` int(50) DEFAULT NULL,
+  `sort` int(50) DEFAULT '99',
   `the_column` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of field
 -- ----------------------------
+INSERT INTO `field` VALUES ('4', '参数', '1', '1', '99', 'cs');
+INSERT INTO `field` VALUES ('5', '环境概述', '2', '1', '99', 'hjgs');
+INSERT INTO `field` VALUES ('6', '文件', '3', '1', '99', 'wj');
 
 -- ----------------------------
 -- Table structure for node
@@ -152,7 +150,7 @@ CREATE TABLE `node` (
   `style` varchar(155) DEFAULT '' COMMENT '菜单样式',
   `sort` int(50) DEFAULT '99',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=38 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=42 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of node
@@ -192,7 +190,11 @@ INSERT INTO `node` VALUES ('33', '删除分类', 'admin', 'product', 'catedel', 
 INSERT INTO `node` VALUES ('34', '添加产品', 'admin', 'product', 'contentadd', '1', '30', '', '99');
 INSERT INTO `node` VALUES ('35', '编辑产品', 'admin', 'product', 'contentedit', '1', '30', '', '99');
 INSERT INTO `node` VALUES ('36', '删除产品', 'admin', 'product', 'contentdel', '1', '30', '', '99');
-INSERT INTO `node` VALUES ('37', '字段管理', 'admin', '', '', '2', '16', '', '99');
+INSERT INTO `node` VALUES ('37', '字段管理', 'admin', 'product', 'type', '2', '16', '', '99');
+INSERT INTO `node` VALUES ('38', '批量删除', 'admin', 'product', 'delajax', '1', '30', '', '99');
+INSERT INTO `node` VALUES ('39', '添加字段', 'admin', 'product', 'typeadd', '1', '37', '', '99');
+INSERT INTO `node` VALUES ('40', '编辑字段', 'admin', 'product', 'typeedit', '1', '37', '', '99');
+INSERT INTO `node` VALUES ('41', '删除字段', 'admin', 'product', 'typedel', '1', '37', '', '99');
 
 -- ----------------------------
 -- Table structure for role
@@ -267,5 +269,5 @@ CREATE TABLE `user` (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('1', 'admin', '21232f297a57a5a743894a0e4a801fc3', '96', '127.0.0.1', '1496148448', 'admin', '1', '1');
+INSERT INTO `user` VALUES ('1', 'admin', '21232f297a57a5a743894a0e4a801fc3', '102', '127.0.0.1', '1496198174', 'admin', '1', '1');
 INSERT INTO `user` VALUES ('5', 'bobo', 'e10adc3949ba59abbe56e057f20f883e', '19', '127.0.0.1', '1494904744', '123', '1', '2');

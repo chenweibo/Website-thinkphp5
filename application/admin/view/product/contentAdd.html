@@ -11,13 +11,14 @@
     <link href="__CSS__/plugins/iCheck/custom.css" rel="stylesheet">
     <link href="__CSS__/style.min.css?v=4.1.0" rel="stylesheet">
     <!-- Sweet Alert -->
+
     <link href="__CSS__/plugins/sweetalert/sweetalert.css" rel="stylesheet">
-    <link href="__CSS__/plugins/webuploader/webuploader.css" rel="stylesheet">
-    <link href="__CSS__/plugins/webuploader/webuploader.css" rel="stylesheet">
     <link rel="stylesheet" href="__CSS__/layui/css/layui.css"  media="all">
     <link rel="stylesheet" type="text/css" href="__ADMIN__/edit/css/wangEditor.min.css">
     <link href="__CSS__/plugins/dropzone/basic.css" rel="stylesheet">
     <link href="__CSS__/plugins/dropzone/dropzone.css" rel="stylesheet">
+    <script src="__JS__/jquery.min.js?v=2.1.4"></script>
+    <script type="text/javascript" src="__ADMIN__/edit/js/wangEditor.min.js"></script>
     <style>
 
         .layui-form-switch{
@@ -117,6 +118,150 @@
                             </div>
                         </div>
 
+                        {volist name="type" id="v"}
+
+
+                        {switch name="v.fieldname"}
+                        {case value="1"}
+
+                        <div class="form-group">
+                            <label class="col-sm-1 control-label">{$v.name}：</label>
+                            <div class="input-group col-sm-4">
+                                <input id="{$v.the_column}" type="text"  class="form-control" name="{$v.the_column}"  aria-required="true">
+                            </div>
+                        </div>
+
+
+
+                        {/case}
+                        {case value="2"}
+
+                        <div class="form-group">
+                            <label class="col-sm-1 control-label">{$v.name}：</label>
+                            <div class="input-group col-sm-8" >
+
+
+                                <div id="{$v.the_column}" style="height: 500px"><p>请输入内容</p></div>
+                                <input type="hidden" name="{$v.the_column}" class="{$v.the_column}" value="">
+
+                            </div>
+                        </div>
+
+
+
+                        <script>
+
+
+
+                            $(function () {
+
+
+
+                                var editor = new wangEditor('{$v.the_column}');
+
+                                wangEditor.config.printLog = false;
+                                editor.config.uploadImgUrl = '/admin/common/uploadsedit';
+                                editor.config.uploadParams = {
+                                    // token1: 'abcde',
+                                    // token2: '12345'
+                                };
+
+                                editor.config.mapAk = 'Hl7GMskDe5PXgBsY0PSD0qEFzVNtKGBc';
+                                editor.config.uploadImgFileName = 'img'
+                                editor.config.uploadHeaders = {
+                                    // 'Accept' : 'text/x-json'
+                                }
+
+                                editor.onchange = function () {
+                                    // 编辑区域内容变化时，实时打印出当前内容
+                                    $('.{$v.the_column}').attr('value',this.$txt.html()) ;
+                                };
+
+                                editor.create();
+
+
+
+                            })
+                        </script>
+
+
+                        {/case}
+                        {case value="3"}
+
+
+                        <div class="form-group">
+                            <label class="col-sm-1 control-label">{$v.name}：</label>
+                            <div class="col-md-4 input-group">
+                                <input id="{$v.the_column}" type="file" name="{$v.the_column}" style="display:none">
+                                <span class="input-group-addon" onclick="$('input[id={$v.the_column}]').click();" style="cursor: pointer; background-color: #e7e7e7"><i class="fa fa-folder-open"></i>选择</span>
+                                <input id="{$v.the_column}1" name="{$v.the_column}" class="form-control" type="text" value=""  >
+
+                                <span class="input-group-addon {$v.the_column}" style="width:80px;cursor: pointer;pointer-events: auto;" ><i class="fa fa-folder-open"></i>点击上传</span>
+
+                            </div>
+                            <label id="targetwz" for="inputPassword" style="color:#f00" class="sr-only">*请选择文件</label>
+                        </div>
+
+                            <script>
+
+
+
+                                var {$v.name}1=$("#{$v.the_column}1");
+                                var {$v.name}2=$("#{$v.the_column}");
+                                $('input[id={$v.the_column}]').change(function() {
+                                    $('#{$v.the_column}1').val($(this).val());
+                                });
+
+
+                                $(".{$v.the_column}").click(function(){
+
+                                    if({$v.name}1.val()==0 ||{$v.name}2.val()==0){
+
+                                        up.focus();
+                                        swal("不能为空", "", "error");
+                                        return false;
+                                    }
+
+                                    else{
+                                        var formData = new FormData();
+                                        var type = {$v.the_column};
+                                        formData.append("{$v.the_column}",$("#{$v.the_column}")[0].files[0]);
+                                        formData.append("type","{$v.the_column}");
+                                        $.ajax({
+                                            url: '/admin/common/uploadsother' ,
+                                            type: 'POST',
+                                            data:formData  ,// 你的formid
+
+                                            async: false,
+                                            cache: false,
+                                            contentType: false,
+                                            processData: false,
+
+                                            beforeSend:function(){
+                                                jz = layer.load(0, {shade: false}); //0代表加载的风格，支持0-2
+                                            },
+                                            success: function (data) {
+                                                layer.close(jz);
+                                                $('#{$v.the_column}1').val('/uploads/'+data);
+                                                console.log(data);
+                                            },
+                                            error: function () {
+                                                alert('上传错误联系管理员');
+                                            }
+                                        });
+
+                                    }
+
+
+                                });
+                            </script>
+
+                        {/case}
+                        {default /}
+                        {/switch}
+
+
+                        {/volist}
 
                         <div class="form-group layui-form">
 
@@ -258,7 +403,7 @@
 <script src="__JS__/plugins/validate/jquery.validate.min.js"></script>
 <script src="__JS__/plugins/validate/messages_zh.min.js"></script>
 <script src="__CSS__/layui/layui.js" charset="utf-8"></script>
-<script type="text/javascript" src="__ADMIN__/edit/js/wangEditor.min.js"></script>
+
 <script src="__JS__/plugins/dropzone/dropzone.js"></script>
 <script src="__JS__/other.js"></script>
 

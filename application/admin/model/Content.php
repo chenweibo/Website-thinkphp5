@@ -74,5 +74,44 @@ class Content extends Model
         }
     }
 
+     public  function delmore($id){
 
+         try{
+
+             $this->destroy($id);
+             return ['code' => 1, 'data' => '', 'msg' => '删除成功'];
+
+         }catch( PDOException $e){
+             return ['code' => 0, 'data' => '', 'msg' => $e->getMessage()];
+         }
+
+     }
+
+     public  function addtablefield($str){
+
+
+         try{
+
+             $this->query("alter table content add $str varchar(255) ;");
+             return ['code' => 1, 'data' => '', 'msg' => '添加'.$str.'成功'];
+
+         }catch( PDOException $e){
+             return ['code' => 0, 'data' => '', 'msg' => $e->getMessage()];
+         }
+
+     }
+
+    public  function deltablefield($str){
+
+
+        try{
+
+            $this->query("alter table content drop column $str ;");
+            return ['code' => 1, 'data' => '', 'msg' => '添加'.$str.'成功'];
+
+        }catch( PDOException $e){
+            return ['code' => 0, 'data' => '', 'msg' => $e->getMessage()];
+        }
+
+    }
 }

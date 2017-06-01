@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>产品编辑</title>
+    <title>下载编辑</title>
     <link rel="shortcut icon" href="favicon.ico">
     <link href="__CSS__/bootstrap.min.css?v=3.3.6" rel="stylesheet">
     <link href="__CSS__/font-awesome.min.css?v=4.4.0" rel="stylesheet">
@@ -33,7 +33,7 @@
         <div class="col-sm-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>产品编辑</h5>
+                    <h5>下载编辑</h5>
                     <div class="ibox-tools">
                         <a class="collapse-link">
                             <i class="fa fa-chevron-up"></i>
@@ -397,7 +397,7 @@
 
 
 
-                        <input type="hidden" name="type" value="1">
+                        <input type="hidden" name="type" value="4">
                         <div class="form-group">
                             <div class="col-sm-1 col-sm-offset-1">
                                 <!--<input type="button" value="提交" class="btn btn-primary" id="postform"/>-->
@@ -557,7 +557,7 @@
                 //关闭加载层
                 layer.close(jz);
                 if(data.code == 1){
-                    window.location.href="{:url('product/contentlist')}";
+                    window.location.href="{:url('Down/contentlist')}";
                 }else{
                     swal(data.msg, "", "error");
                 }
@@ -567,28 +567,6 @@
 
         return false;
     }
-
-    //表单验证
-    $(document).ready(function(){
-        $(".i-checks").iCheck({checkboxClass:"icheckbox_square-green",radioClass:"iradio_square-green",});
-    });
-    $.validator.setDefaults({
-        highlight: function(e) {
-            $(e).closest(".form-group").removeClass("has-success").addClass("has-error")
-        },
-        success: function(e) {
-            e.closest(".form-group").removeClass("has-error").addClass("has-success")
-        },
-        errorElement: "span",
-        errorPlacement: function(e, r) {
-            e.appendTo(r.is(":radio") || r.is(":checkbox") ? r.parent().parent().parent() : r.parent())
-        },
-        errorClass: "help-block m-b-none",
-        validClass: "help-block m-b-none"
-    });
-
-
-
 
 
 

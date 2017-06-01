@@ -11,13 +11,13 @@ use app\admin\model\Field;
 
 
 
-class Product extends Base
+class Images extends Base
 {
 
     public function cate(){
 
         $cate= new Cate();
-        $a=$cate->getCate(1);
+        $a=$cate->getCate(3);
 
         if(request()->isAjax()){
 
@@ -32,7 +32,7 @@ class Product extends Base
     public function cateAdd(){
 
         $cate= new Cate();
-        $create=$cate->getCate(1);
+        $create=$cate->getCate(3);
         $Category = new Category();
         $data=$Category::unlimitedForLever($create,'--');
         $this->assign('data',$data);
@@ -67,7 +67,7 @@ class Product extends Base
 
         }
 
-        $create=$cate->getCate(1);
+        $create=$cate->getCate(3);
         $Category = new Category();
         $data=$Category::unlimitedForLever($create,'--');
         $view=$cate->getoneCate($id);
@@ -104,14 +104,14 @@ class Product extends Base
             if (isset($param['searchText']) && !empty($param['searchText'])) {
                 $where['content.name'] = ['like', '%' . $param['searchText'] . '%'];
             }
-            $where['type'] = 1;
+            $where['type'] = 3;
             $content = new Content();
             $selectResult = $content->getContentByWhere($where, $offset, $limit);
 
             foreach($selectResult as $key=>$vo){
 
                 $operate = [
-                    '编辑' => url('Product/contentEdit', ['id' => $vo['id']]),
+                    '编辑' => url('Images/contentEdit', ['id' => $vo['id']]),
                     '删除' => "javascript:contentDel('".$vo['id']."')"
                 ];
 
@@ -164,10 +164,10 @@ class Product extends Base
         $content= new Content();
         $field= new Field();
         $cate= new Cate();
-        $create=$cate->getCate(1);
+        $create=$cate->getCate(3);
         $Category = new Category();
         $data=$Category::unlimitedForLever($create,'--');
-        $type=$field->getTypeWhere('at_type=1');
+        $type=$field->getTypeWhere('at_type=3');
         $this->assign('type',$type);
         $this->assign('data',$data);
         $this->assign('tid',input('tid'));
@@ -203,12 +203,12 @@ class Product extends Base
 
 
         }
-        $create=$cate->getCate(1);
+        $create=$cate->getCate(3);
         $Category = new Category();
         $data=$Category::unlimitedForLever($create,'--');
         $view=Content::get($id);
         $img=codeimg($view['moreimg']);
-        $type=$field->getTypeWhere('at_type=1');
+        $type=$field->getTypeWhere('at_type=3');
         $this->assign('img',$img);
         $this->assign('view',$view);
         $this->assign('data',$data);
@@ -257,14 +257,14 @@ class Product extends Base
             if (isset($param['searchText']) && !empty($param['searchText'])) {
                 $where['content.name'] = ['like', '%' . $param['searchText'] . '%'];
             }
-            $where['at_type'] = 1;
+            $where['at_type'] = 3;
 
             $selectResult = $field->getTypeByWhere($where, $offset, $limit);
             $catelist=[1=>'纯文本', 2=>'富文本' ,3=>'单文件'];
             foreach($selectResult as $key=>$vo){
 
                 $operate = [
-                    '编辑' => url('Product/typeEdit', ['id' => $vo['id']]),
+                    '编辑' => url('Images/typeEdit', ['id' => $vo['id']]),
                     '删除' => "javascript:typeDel('".$vo['id']."')"
                 ];
                 $catename=$catelist[$vo['fieldname']];

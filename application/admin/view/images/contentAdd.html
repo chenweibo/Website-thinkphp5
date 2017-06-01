@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>产品编辑</title>
+    <title>图片添加</title>
     <link rel="shortcut icon" href="favicon.ico">
     <link href="__CSS__/bootstrap.min.css?v=3.3.6" rel="stylesheet">
     <link href="__CSS__/font-awesome.min.css?v=4.4.0" rel="stylesheet">
@@ -11,6 +11,7 @@
     <link href="__CSS__/plugins/iCheck/custom.css" rel="stylesheet">
     <link href="__CSS__/style.min.css?v=4.1.0" rel="stylesheet">
     <!-- Sweet Alert -->
+
     <link href="__CSS__/plugins/sweetalert/sweetalert.css" rel="stylesheet">
     <link rel="stylesheet" href="__CSS__/layui/css/layui.css"  media="all">
     <link rel="stylesheet" type="text/css" href="__ADMIN__/edit/css/wangEditor.min.css">
@@ -27,13 +28,13 @@
     </style>
 </head>
 <body class="gray-bg">
-
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
         <div class="col-sm-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>产品编辑</h5>
+                    <h5>图片添加</h5>
+
                     <div class="ibox-tools">
                         <a class="collapse-link">
                             <i class="fa fa-chevron-up"></i>
@@ -48,11 +49,11 @@
                 </div>
                 <div class="ibox-content">
                     <form class="form-horizontal m-t" id="commentForm" method="post" onsubmit="return toVaild()">
-                        <input type="hidden" name="id" value="{$view.id}">
+
                         <div class="form-group">
                             <label class="col-sm-1 control-label">名称：</label>
                             <div class="input-group col-sm-4">
-                                <input id="cate_name" type="text" value="{$view.name}" class="form-control" name="name" required  aria-required="true">
+                                <input id="cate_name" type="text" class="form-control" name="name" required  aria-required="true">
 
                             </div>
 
@@ -61,7 +62,7 @@
                         <div class="form-group">
                             <label class="col-sm-1 control-label">英文名称：</label>
                             <div class="input-group col-sm-4">
-                                <input id="cate_enname" type="text" value="{$view.enname}" class="form-control" name="enname"  aria-required="true">
+                                <input id="cate_enname" type="text" class="form-control" name="enname"  aria-required="true">
 
                             </div>
 
@@ -73,7 +74,7 @@
                             <div class="col-md-4 input-group">
 
 
-                                <input id="jt" name="rewrite" class="form-control" type="text" value="{$view.rewrite}" required  aria-required="true"  >
+                                <input id="jt" name="rewrite" class="form-control" type="text" value="" required  aria-required="true"  >
 
                                 <span class="input-group-addon shengcheng " style="width:80px;cursor: pointer;pointer-events: auto;" >自动生成</span>
 
@@ -90,9 +91,10 @@
                                     <option >请选择</option>
                                     {volist name="data" id="v"}
 
-                                    <option value="{$v.cate_path}-{$v.id}" {if condition="$view.lid eq $v.id"} selected="select" {/if} >{$v.html}{$v.name}</option>
+                                    <option value="{$v.cate_path}-{$v.id}" {if condition="$v.id eq $tid"} selected="select" {/if}   >{$v.html}{$v.name}</option>
                                     {/volist}
                                 </select>
+
                             </div>
                         </div>
 
@@ -100,7 +102,7 @@
                         <div class="form-group">
                             <label class="col-sm-1 control-label">排序：</label>
                             <div class="input-group col-sm-1">
-                                <input id="site_sort" type="text" value="{$view.sort}" class="form-control" name="sort"  aria-required="true">
+                                <input id="site_sort" type="text" value="99" class="form-control" name="sort"  aria-required="true">
                             </div>
                         </div>
 
@@ -110,12 +112,11 @@
                             <div class="input-group col-sm-8" >
 
 
-                                    <div id="editor-trigger" style="height: 500px"></div>
-                                    <input type="hidden" name="info" class="info" value="{$view.info}">
+                                    <div id="editor-trigger" style="height: 500px"><p>请输入内容</p></div>
+                                    <input type="hidden" name="info" class="info" value="">
 
                             </div>
                         </div>
-
 
                         {volist name="type" id="v"}
 
@@ -141,7 +142,7 @@
 
 
                                 <div id="{$v.the_column}" style="height: 500px"><p>请输入内容</p></div>
-                                <input type="hidden" name="{$v.the_column}"  class="{$v.the_column}" value="{$view->$v.the_column}">
+                                <input type="hidden" name="{$v.the_column}" class="{$v.the_column}" value="">
 
                             </div>
                         </div>
@@ -178,7 +179,7 @@
 
                                 editor.create();
 
-                                editor.$txt.html('{$view->$v.the_column}');
+
 
                             })
                         </script>
@@ -193,7 +194,7 @@
                             <div class="col-md-4 input-group">
                                 <input id="{$v.the_column}" type="file" name="{$v.the_column}" style="display:none">
                                 <span class="input-group-addon" onclick="$('input[id={$v.the_column}]').click();" style="cursor: pointer; background-color: #e7e7e7"><i class="fa fa-folder-open"></i>选择</span>
-                                <input id="{$v.the_column}1" name="{$v.the_column}" class="form-control" type="text" value="{$view->$v.the_column}"  >
+                                <input id="{$v.the_column}1" name="{$v.the_column}" class="form-control" type="text" value=""  >
 
                                 <span class="input-group-addon {$v.the_column}" style="width:80px;cursor: pointer;pointer-events: auto;" ><i class="fa fa-folder-open"></i>点击上传</span>
 
@@ -201,59 +202,59 @@
                             <label id="targetwz" for="inputPassword" style="color:#f00" class="sr-only">*请选择文件</label>
                         </div>
 
-                        <script>
+                            <script>
 
 
 
-                            var {$v.name}1=$("#{$v.the_column}1");
-                            var {$v.name}2=$("#{$v.the_column}");
-                            $('input[id={$v.the_column}]').change(function() {
-                                $('#{$v.the_column}1').val($(this).val());
-                            });
+                                var {$v.name}1=$("#{$v.the_column}1");
+                                var {$v.name}2=$("#{$v.the_column}");
+                                $('input[id={$v.the_column}]').change(function() {
+                                    $('#{$v.the_column}1').val($(this).val());
+                                });
 
 
-                            $(".{$v.the_column}").click(function(){
+                                $(".{$v.the_column}").click(function(){
 
-                                if({$v.name}1.val()==0 ||{$v.name}2.val()==0){
+                                    if({$v.name}1.val()==0 ||{$v.name}2.val()==0){
 
-                                    up.focus();
-                                    swal("不能为空", "", "error");
-                                    return false;
-                                }
+                                        up.focus();
+                                        swal("不能为空", "", "error");
+                                        return false;
+                                    }
 
-                                else{
-                                    var formData = new FormData();
-                                    var type = {$v.the_column};
-                                    formData.append("{$v.the_column}",$("#{$v.the_column}")[0].files[0]);
-                                    formData.append("type","{$v.the_column}");
-                                    $.ajax({
-                                        url: '/admin/common/uploadsother' ,
-                                        type: 'POST',
-                                        data:formData  ,// 你的formid
+                                    else{
+                                        var formData = new FormData();
+                                        var type = {$v.the_column};
+                                        formData.append("{$v.the_column}",$("#{$v.the_column}")[0].files[0]);
+                                        formData.append("type","{$v.the_column}");
+                                        $.ajax({
+                                            url: '/admin/common/uploadsother' ,
+                                            type: 'POST',
+                                            data:formData  ,// 你的formid
 
-                                        async: false,
-                                        cache: false,
-                                        contentType: false,
-                                        processData: false,
+                                            async: false,
+                                            cache: false,
+                                            contentType: false,
+                                            processData: false,
 
-                                        beforeSend:function(){
-                                            jz = layer.load(0, {shade: false}); //0代表加载的风格，支持0-2
-                                        },
-                                        success: function (data) {
-                                            layer.close(jz);
-                                            $('#{$v.the_column}1').val('/uploads/'+data);
-                                            console.log(data);
-                                        },
-                                        error: function () {
-                                            alert('上传错误联系管理员');
-                                        }
-                                    });
+                                            beforeSend:function(){
+                                                jz = layer.load(0, {shade: false}); //0代表加载的风格，支持0-2
+                                            },
+                                            success: function (data) {
+                                                layer.close(jz);
+                                                $('#{$v.the_column}1').val('/uploads/'+data);
+                                                console.log(data);
+                                            },
+                                            error: function () {
+                                                alert('上传错误联系管理员');
+                                            }
+                                        });
 
-                                }
+                                    }
 
 
-                            });
-                        </script>
+                                });
+                            </script>
 
                         {/case}
                         {default /}
@@ -262,23 +263,22 @@
 
                         {/volist}
 
-
                         <div class="form-group layui-form">
 
 
                             <label class="col-sm-1 control-label">推荐：</label>
                             <div class=" col-sm-1">
 
-                                <input type="checkbox" {eq name="$view.recommend" value="1"}checked=""{/eq}  lay-skin="switch"  lay-filter="switchTest" lay-text="ON|OFF">
-                                <input type="hidden" class="cate_recommend" name="recommend" value="{$view.recommend}">
+                                <input type="checkbox"  lay-skin="switch" lay-filter="switchTest" lay-text="ON|OFF">
+                                <input type="hidden" class="cate_recommend" name="recommend" value="0">
 
                             </div>
 
                             <label class=" control-label" style="float: left; margin-right: 15px">显示：</label>
                             <div class="input-group col-sm-1">
 
-                                <input type="checkbox" {eq name="$view.show" value="1"}checked=""{/eq} lay-skin="switch" lay-filter="switchTestshow" lay-text="ON|OFF">
-                                <input type="hidden" class="show" name="show" value="{$view.show}">
+                                <input type="checkbox" checked=""  lay-skin="switch" lay-filter="switchTestshow" lay-text="ON|OFF">
+                                <input type="hidden" class="show" name="show" value="1">
 
                             </div>
 
@@ -290,7 +290,7 @@
                             <div class="col-md-4 input-group">
                                 <input id="lefile" type="file" name="image" style="display:none">
                                 <span class="input-group-addon" onclick="$('input[id=lefile]').click();" style="cursor: pointer; background-color: #e7e7e7"><i class="fa fa-folder-open"></i>选择</span>
-                                <input id="photoCover" name="img" class="form-control" type="text" value="{$view.img}" name="icon" >
+                                <input id="photoCover" name="img" class="form-control" type="text" value="" name="icon" >
 
                                 <span class="input-group-addon ut2" style="width:80px;cursor: pointer;pointer-events: auto;" ><i class="fa fa-folder-open"></i>点击上传</span>
 
@@ -303,7 +303,7 @@
                             <div class="col-md-4 input-group">
                                 <input id="down" type="file" name="down" style="display:none">
                                 <span class="input-group-addon" onclick="$('input[id=down]').click();" style="cursor: pointer; background-color: #e7e7e7"><i class="fa fa-folder-open"></i>选择</span>
-                                <input id="photoCover1" name="down" class="form-control" type="text" value="{$view.down}" name="icon" >
+                                <input id="photoCover1" name="down" class="form-control" type="text" value="" name="icon" >
 
                                 <span class="input-group-addon dm" style="width:80px;cursor: pointer;pointer-events: auto;" ><i class="fa fa-folder-open"></i>点击上传</span>
 
@@ -316,19 +316,17 @@
                         <div class="form-group">
                             <label class="col-sm-1 control-label">外链：</label>
                             <div class="input-group col-sm-4">
-                                <input id="keywords" type="text" class="form-control" name="link" value="{$view.link}"  aria-required="true">
+                                <input id="link" type="text" class="form-control" name="link"  aria-required="true">
 
                             </div>
 
                         </div>
 
 
-
-
                         <div class="form-group">
                             <label class="col-sm-1 control-label">关键词：</label>
                             <div class="input-group col-sm-4">
-                                <input id="keywords" type="text" class="form-control" name="keywords" value="{$view.keywords}"  aria-required="true">
+                                <input id="keywords" type="text" class="form-control" name="keywords"  aria-required="true">
 
                             </div>
 
@@ -337,7 +335,7 @@
                         <div class="form-group">
                             <label class="col-sm-1 control-label">描述：</label>
                             <div class="input-group col-sm-4">
-                                <input id="description" type="text" class="form-control" name="description" value="{$view.description}"  aria-required="true">
+                                <input id="description" type="text" class="form-control" name="description"  aria-required="true">
 
                             </div>
 
@@ -347,36 +345,16 @@
                             <label class="col-sm-1 control-label">多图：</label>
                             <div class="input-group col-sm-4">
 
+
                                 <div class="dropzone" id="myDropzone">
-
-                                    {volist name="img" id="v"}
-                                    <div class="dz-preview dz-file-preview">
-                                        <div class="dz-image">
-                                            <img data-dz-thumbnail="" width="120" height="120" src="__UP__/{$v}" alt="">
-                                        </div>
-                                        <div class="dz-details">
-                                            <div class="dz-filename"><span data-dz-name></span></div>
-                                            <div class="dz-size" data-dz-size></div>
-
-                                        </div>
-
-                                        <a class="dz-remove move" data-img="{$v}"  data-dz-remove="">移除图片</a>
-                                    </div>
-                                    {/volist}
-
                                     <div class="am-text-success dz-message">
                                         将文件拖拽到此处<br>或点此打开文件管理器选择文件
                                     </div>
                                 </div>
                             </div>
-
-                            <input type="hidden" class="duotu" name="moreimg" value='{$ppp}'>
+                            <input type="hidden" class="duotu" name="moreimg" value="">
                         </div>
-
-
-
-
-
+                        
 
                         <div class="form-group layui-form">
 
@@ -385,19 +363,16 @@
                             <label class="col-sm-1 control-label">语言：</label>
                             <div class=" col-sm-4">
 
-
-                                    <input type="radio" name="lang" value="cn" title="中文" {eq name="$view.lang" value="cn"}checked=""{/eq}>
-                                    <input type="radio" name="lang" value="en" title="英文" {eq name="$view.lang" value="en"}checked=""{/eq}>
-
-
+                                    <input type="radio" name="lang" value="cn" title="中文" checked="">
+                                    <input type="radio" name="lang" value="en" title="英文">
 
                             </div>
 
-                        </div>
+                         </div>
 
 
 
-                        <input type="hidden" name="type" value="1">
+                        <input type="hidden" name="type" value="3">
                         <div class="form-group">
                             <div class="col-sm-1 col-sm-offset-1">
                                 <!--<input type="button" value="提交" class="btn btn-primary" id="postform"/>-->
@@ -428,48 +403,13 @@
 <script src="__JS__/plugins/validate/jquery.validate.min.js"></script>
 <script src="__JS__/plugins/validate/messages_zh.min.js"></script>
 <script src="__CSS__/layui/layui.js" charset="utf-8"></script>
+
 <script src="__JS__/plugins/dropzone/dropzone.js"></script>
 <script src="__JS__/other.js"></script>
 
     <script type="text/javascript">
 
 
-                $('.move').click(function () {
-
-
-                    var bb=$('.duotu').attr('value');
-                    var filename=$(this).data('img');
-                    var dt=$(this).parent();
-                    var cc=  '<img src="'+filename+'">';
-                    $('.duotu').attr('value',bb.replace(cc, ""));
-
-                    $.ajax({
-                        type:"POST",
-                        url:'/admin/common/filedelete',
-                        data:{'path' :filename },// 你的formid
-                        async: false,
-                        beforeSend:function(){
-                            jz = layer.load(0, {shade: false}); //0代表加载的风格，支持0-2
-                        },
-                        error: function(request) {
-                            layer.close(jz);
-                            dt.remove();
-                            swal("网络错误!", "", "error");
-                        },
-                        success: function(data) {
-                            //关闭加载层
-                            layer.close(jz);
-                             dt.remove();
-                            if(data.code == 1){
-                                swal(data.msg, "", "success");
-                            }else{
-
-                            }
-
-                        }
-                    });
-
-                });
 
         Dropzone.autoDiscover = false;
         var myDropzone = new Dropzone("#myDropzone", {
@@ -536,7 +476,6 @@
 
 
 
-
     //表单提交
     function toVaild(){
         var jz;
@@ -555,9 +494,13 @@
             },
             success: function(data) {
                 //关闭加载层
+                var tid=data.tid;
+                var link="/admin/Images/contentlist/tid/"+tid;
                 layer.close(jz);
                 if(data.code == 1){
-                    window.location.href="{:url('product/contentlist')}";
+                   location.href=link;
+
+
                 }else{
                     swal(data.msg, "", "error");
                 }
@@ -567,28 +510,6 @@
 
         return false;
     }
-
-    //表单验证
-    $(document).ready(function(){
-        $(".i-checks").iCheck({checkboxClass:"icheckbox_square-green",radioClass:"iradio_square-green",});
-    });
-    $.validator.setDefaults({
-        highlight: function(e) {
-            $(e).closest(".form-group").removeClass("has-success").addClass("has-error")
-        },
-        success: function(e) {
-            e.closest(".form-group").removeClass("has-error").addClass("has-success")
-        },
-        errorElement: "span",
-        errorPlacement: function(e, r) {
-            e.appendTo(r.is(":radio") || r.is(":checkbox") ? r.parent().parent().parent() : r.parent())
-        },
-        errorClass: "help-block m-b-none",
-        validClass: "help-block m-b-none"
-    });
-
-
-
 
 
 
@@ -710,7 +631,6 @@
     };
 
     editor.create();
-    editor.$txt.html('{$view.info}');
 
 
 
@@ -718,14 +638,14 @@
 
 
 
-
+<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
 <script>
     layui.use(['form', 'layedit', 'laydate'], function(){
         var form = layui.form()
             ,layer = layui.layer
 
 
-
+        //监听指定开关
         form.on('switch(switchTest)', function(data){
              $('.cate_recommend').attr('value',this.checked ? '1' : '0')
 

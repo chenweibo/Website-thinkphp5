@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>字段管理</title>
+    <link rel="shortcut icon" href="favicon.ico">
+    <link href="__CSS__/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="__CSS__/font-awesome.min.css?v=4.4.0" rel="stylesheet">
+    <link href="__CSS__/plugins/bootstrap-table/bootstrap-table.min.css" rel="stylesheet">
+    <link href="__CSS__/animate.min.css" rel="stylesheet">
+    <link href="__CSS__/style.min.css?v=4.1.0" rel="stylesheet">
+    <link href="__CSS__/plugins/sweetalert/sweetalert.css" rel="stylesheet">
+    <link rel="stylesheet" href="__CSS__/layui/css/layui.css"  media="all">
+    <link href="__CSS__/other.css" rel="stylesheet">
+    <link href="__CSS__/plugins/bootstrap-switch/bootstrap-switch.min.css" rel="stylesheet">
+
+</head>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+
+
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>字段管理</h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="form_basic.html#">
+                            <i class="fa fa-wrench"></i>
+                        </a>
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content">
+
+
+                        <div class="form-group clearfix col-sm-2">
+                            <a href="{:url('product/typeadd',['type'=>3])}"><button class="btn btn-outline btn-primary" type="button">添加字段 </button></a>
+
+
+
+                        </div>
+
+
+
+                        <div class="example-wrap">
+                            <div class="example">
+                                <table id="cusTable" data-height="560">
+                                    <thead>
+
+                                    <th data-field="id">id</th>
+                                    <th data-field="name">名称</th>
+                                    <th data-field="catename">类别</th>
+                                    <th data-field="sort">排序</th>
+
+                                    <th data-field="operate">操作</th>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
+                </div>
+            </div>
+
+                </div>
+            </div>
+
+</div>
+<script src="__JS__/jquery.min.js?v=2.1.4"></script>
+<script src="__JS__/bootstrap.min.js?v=3.3.6"></script>
+<script src="__JS__/content.min.js?v=1.0.0"></script>
+<script src="__JS__/plugins/bootstrap-table/bootstrap-table.min.js"></script>
+<script src="__JS__/plugins/bootstrap-table/bootstrap-table-mobile.min.js"></script>
+<script src="__JS__/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+<script src="__JS__/plugins/bootstrap-table/tableExport.js"></script>
+<script src="__JS__/plugins/bootstrap-table/bootstrap-table-export.min.js"></script>
+<script src="__JS__/plugins/suggest/bootstrap-suggest.min.js"></script>
+<script src="__JS__/plugins/layer/laydate/laydate.js"></script>
+<script src="__JS__/plugins/sweetalert/sweetalert.min.js"></script>
+<script src="__JS__/plugins/layer/layer.min.js"></script>
+<script src="__CSS__/layui/layui.js" charset="utf-8"></script>
+
+<script type="text/javascript">
+    var delarr=[];
+
+    Array.prototype.indexOf = function (val) {
+        for(var i = 0; i < this.length; i++){
+            if(this[i] == val){return i;}
+        }
+        return -1;
+    }
+    Array.prototype.remove = function (val) {
+        var index = this.indexOf(val);
+        if(index > -1){this.splice(index,1);}
+    }
+
+    function initTable() {
+        //先销毁表格
+        $('#cusTable').bootstrapTable('destroy');
+        //初始化表格,动态从服务器加载数据
+        $("#cusTable").bootstrapTable({
+            method: "get",  //使用get请求到服务器获取数据
+            url: "./type", //获取数据的地址
+            striped: true,  //表格显示条纹
+            pagination: true, //启动分页
+            maintainSelected: true,
+            pageSize: 10,  //每页显示的记录数
+            pageNumber:1, //当前第几页
+//            showExport: true,//显示导出按钮
+//            exportDataType: "basic",//导出类型
+            selectItemName:'rad',
+            onCheck: function (id) {
+                delarr.push(id.id);
+                console.log('arr:'+id.id)
+           },
+           onUncheck: function (id) {
+
+               delarr.remove(id.id);
+                 console.log('arr:'+delarr)
+        }, onCheckAll: function (id) {
+                delarr.splice(0,delarr.length);
+                $.each(id,function (name,value) {
+
+                    delarr.push(value.id);
+                });
+                console.log(delarr);
+            },
+            onUncheckAll: function (id) {
+                delarr.splice(0,delarr.length);
+                console.log('全部取消了:'+delarr)
+            },
+            pageList: [5, 10, 15, 20, 25],  //记录数可选列表
+            sidePagination: "server", //表示服务端请求
+            //设置为undefined可以获取pageNumber，pageSize，searchText，sortName，sortOrder
+            //设置为limit可以获取limit, offset, search, sort, order
+            queryParamsType : "undefined",
+            queryParams: function queryParams(params) {   //设置查询参数
+
+                var param = {
+                    pageNumber: params.pageNumber,
+                    pageSize: params.pageSize,
+                    searchText:$('#contentname').val()
+                          
+                };
+
+                return param;
+
+            },
+
+
+            onLoadError: function(){  //加载失败时执行
+                layer.msg("加载数据失败");
+            },
+
+        });
+    }
+
+
+    $(document).ready(function () {
+
+
+        //调用函数，初始化表格
+        initTable();
+        $("#search").bind("click", initTable);
+        //当点击查询按钮的时候执行
+
+    });
+
+
+
+
+    function typeDel(id){
+        layer.confirm('确认删除?', {icon: 3, title:'提示'}, function(index){
+            var link="{:url('Images/typeDel')}";
+            //do something
+            $.getJSON(link, {'id' : id}, function(res){
+                if(res.code == 1){
+                    layer.alert('删除成功');
+                    initTable();
+                }else{
+                    layer.alert('删除失败');
+                }
+            });
+
+            layer.close(index);
+        })
+
+    }
+
+
+</script>
+</body>
+</html>

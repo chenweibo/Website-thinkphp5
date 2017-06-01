@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>产品编辑</title>
+    <title>编辑文章</title>
     <link rel="shortcut icon" href="favicon.ico">
     <link href="__CSS__/bootstrap.min.css?v=3.3.6" rel="stylesheet">
     <link href="__CSS__/font-awesome.min.css?v=4.4.0" rel="stylesheet">
@@ -33,7 +33,7 @@
         <div class="col-sm-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>产品编辑</h5>
+                    <h5>编辑文章</h5>
                     <div class="ibox-tools">
                         <a class="collapse-link">
                             <i class="fa fa-chevron-up"></i>
@@ -96,12 +96,28 @@
                             </div>
                         </div>
 
+                        <div class="form-group">
+                            <label class="col-sm-1 control-label">发布时间：</label>
+                            <div class="input-group col-sm-4">
+                                <input class="layui-input form-control" required name="time" placeholder="YYYY-MM-DD" value="{$view.time}" onclick="layui.laydate({elem: this, istime: true, format: 'YYYY-MM-DD'})">
+
+                            </div>
+
+                        </div>
+
 
                         <div class="form-group">
                             <label class="col-sm-1 control-label">排序：</label>
-                            <div class="input-group col-sm-1">
-                                <input id="site_sort" type="text" value="{$view.sort}" class="form-control" name="sort"  aria-required="true">
+                            <div class=" col-sm-1">
+                                <input id="site_sort" style="margin-left: -14px" type="text" value="{$view.sort}" class="form-control" name="sort"  aria-required="true">
                             </div>
+
+                            <label class="col-sm-1 control-label">点击量：</label>
+                            <div class="input-group col-sm-1">
+                                <input   id="click" type="text" value="{$view.click}" class="form-control" name="click"   aria-required="true">
+                            </div>
+
+
                         </div>
 
 
@@ -397,7 +413,7 @@
 
 
 
-                        <input type="hidden" name="type" value="1">
+                        <input type="hidden" name="type" value="2">
                         <div class="form-group">
                             <div class="col-sm-1 col-sm-offset-1">
                                 <!--<input type="button" value="提交" class="btn btn-primary" id="postform"/>-->
@@ -419,7 +435,7 @@
 <script src="__JS__/plugins/validate/messages_zh.min.js"></script>
 <script src="__JS__/plugins/iCheck/icheck.min.js"></script>
 <script src="__JS__/plugins/sweetalert/sweetalert.min.js"></script>
-<script src="__JS__/plugins/layer/laydate/laydate.js"></script>
+
 <script src="__JS__/plugins/suggest/bootstrap-suggest.min.js"></script>
 <script src="__JS__/plugins/layer/layer.min.js"></script>
 
@@ -557,7 +573,7 @@
                 //关闭加载层
                 layer.close(jz);
                 if(data.code == 1){
-                    window.location.href="{:url('product/contentlist')}";
+                    window.location.href="{:url('article/contentlist')}";
                 }else{
                     swal(data.msg, "", "error");
                 }
@@ -567,25 +583,6 @@
 
         return false;
     }
-
-    //表单验证
-    $(document).ready(function(){
-        $(".i-checks").iCheck({checkboxClass:"icheckbox_square-green",radioClass:"iradio_square-green",});
-    });
-    $.validator.setDefaults({
-        highlight: function(e) {
-            $(e).closest(".form-group").removeClass("has-success").addClass("has-error")
-        },
-        success: function(e) {
-            e.closest(".form-group").removeClass("has-error").addClass("has-success")
-        },
-        errorElement: "span",
-        errorPlacement: function(e, r) {
-            e.appendTo(r.is(":radio") || r.is(":checkbox") ? r.parent().parent().parent() : r.parent())
-        },
-        errorClass: "help-block m-b-none",
-        validClass: "help-block m-b-none"
-    });
 
 
 
@@ -776,6 +773,40 @@
 
         }
 
+
+    });
+
+
+    layui.use('laydate', function(){
+        var laydate = layui.laydate;
+
+        var start = {
+            min: laydate.now()
+            ,max: '2099-06-16 23:59:59'
+            ,istoday: true
+            ,choose: function(datas){
+                end.min = datas; //开始日选好后，重置结束日的最小日期
+                end.start = datas //将结束日的初始值设定为开始日
+            }
+        };
+
+        var end = {
+            min: laydate.now()
+            ,max: '2099-06-16 23:59:59'
+            ,istoday: false
+            ,choose: function(datas){
+                start.max = datas; //结束日选好后，重置开始日的最大日期
+            }
+        };
+
+        document.getElementById('LAY_demorange_s').onclick = function(){
+            start.elem = this;
+            laydate(start);
+        }
+        document.getElementById('LAY_demorange_e').onclick = function(){
+            end.elem = this
+            laydate(end);
+        }
 
     });
 </script>

@@ -87,13 +87,21 @@ class Content extends Model
 
      }
 
-     public  function addtablefield($str){
+     public  function addtablefield($str,$type){
 
 
          try{
+               if($type==2){
 
-             $this->query("alter table content add $str varchar(255) ;");
-             return ['code' => 1, 'data' => '', 'msg' => '添加'.$str.'成功'];
+                   $this->query("alter table content add $str mediumtext ;");
+                   return ['code' => 1, 'data' => '', 'msg' => '添加'.$str.'成功'];
+               }
+               else{
+
+                   $this->query("alter table content add $str varchar(255) ;");
+                   return ['code' => 1, 'data' => '', 'msg' => '添加'.$str.'成功'];
+               }
+
 
          }catch( PDOException $e){
              return ['code' => 0, 'data' => '', 'msg' => $e->getMessage()];

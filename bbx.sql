@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2017-06-01 14:26:30
+Date: 2017-06-02 16:39:55
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -72,12 +72,12 @@ CREATE TABLE `content` (
   `cs` varchar(255) DEFAULT NULL,
   `wj` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=80 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=79 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of content
 -- ----------------------------
-INSERT INTO `content` VALUES ('40', '123123zc5', '', '123123zc', '21', '0-21', null, null, '0', '', '', '', '', '', 'cn', '0', '1', null, '1', '', '99', null, null);
+INSERT INTO `content` VALUES ('40', '134', '', '123123zc', '21', '0-21', null, null, '0', '', '', '', '', '', 'cn', '0', '1', null, '1', '', '99', '', '');
 INSERT INTO `content` VALUES ('41', '234234ddd', '', '234234ddd', '21', '0-21', null, null, '0', '', '', '', '', '', 'cn', '0', '1', null, '1', '', '99', null, null);
 INSERT INTO `content` VALUES ('42', '123', '213', '123fgf', '24', '0-21-24', null, null, '0', '', '', '', '', '', 'cn', '0', '1', null, '1', '', '99', null, null);
 INSERT INTO `content` VALUES ('43', '123123', 'fff', 'fdgsa', '24', '0-21-24', null, null, '0', '', '', '', '', '', 'cn', '0', '1', null, '1', '', '99', null, null);
@@ -128,13 +128,31 @@ CREATE TABLE `field` (
   `sort` int(50) DEFAULT '99',
   `the_column` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of field
 -- ----------------------------
 INSERT INTO `field` VALUES ('4', '参数', '1', '1', '99', 'cs');
 INSERT INTO `field` VALUES ('6', '文件', '3', '1', '99', 'wj');
+
+-- ----------------------------
+-- Table structure for gbook
+-- ----------------------------
+DROP TABLE IF EXISTS `gbook`;
+CREATE TABLE `gbook` (
+  `id` int(255) NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) DEFAULT NULL,
+  `putname` varchar(255) DEFAULT NULL,
+  `content` varchar(255) DEFAULT NULL,
+  `time` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of gbook
+-- ----------------------------
+INSERT INTO `gbook` VALUES ('1', '123', '123123', '1231', '0000-00-00 00:00:00');
 
 -- ----------------------------
 -- Table structure for node
@@ -151,7 +169,7 @@ CREATE TABLE `node` (
   `style` varchar(155) DEFAULT '' COMMENT '菜单样式',
   `sort` int(50) DEFAULT '99',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=81 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=95 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of node
@@ -235,6 +253,37 @@ INSERT INTO `node` VALUES ('77', '批量删除', 'admin', 'down', 'delajax', '1'
 INSERT INTO `node` VALUES ('78', '添加字段', 'admin', 'down', 'typeadd', '1', '70', '', '99');
 INSERT INTO `node` VALUES ('79', '编辑字段', 'admin', 'down', 'typeedit', '1', '70', '', '99');
 INSERT INTO `node` VALUES ('80', '删除字段', 'admin', 'down', 'typedel', '1', '70', '', '99');
+INSERT INTO `node` VALUES ('81', '留言管理', '#', '#', '#', '2', '0', 'fa fa-commenting-o', '2');
+INSERT INTO `node` VALUES ('82', '单篇管理', '#', '#', '#', '2', '0', 'fa fa-pencil-square-o', '2');
+INSERT INTO `node` VALUES ('83', '留言列表', 'admin', 'gbook', 'index', '2', '81', '', '99');
+INSERT INTO `node` VALUES ('84', '查看留言', 'admin', 'gbook', 'gbookread', '1', '83', '', '99');
+INSERT INTO `node` VALUES ('85', '删除留言', 'admin', 'gbook', 'gbookdel', '1', '83', '', '99');
+INSERT INTO `node` VALUES ('86', '字段管理', 'admin', 'gbook', 'type', '2', '81', '', '99');
+INSERT INTO `node` VALUES ('87', '添加字段', 'admin', 'gbook', 'typeadd', '1', '86', '', '99');
+INSERT INTO `node` VALUES ('88', '编辑字段', 'admin', 'gbook', 'typeedit', '1', '86', '', '99');
+INSERT INTO `node` VALUES ('89', '删除字段', 'admin', 'gbook', 'typedel', '1', '86', '', '99');
+INSERT INTO `node` VALUES ('90', '单篇列表', 'admin', 'page', 'index', '2', '82', '', '99');
+INSERT INTO `node` VALUES ('91', '字段管理', 'admin', 'page', 'type', '2', '82', '', '99');
+INSERT INTO `node` VALUES ('92', '添加字段', 'admin', 'page', 'typeadd', '1', '91', '', '99');
+INSERT INTO `node` VALUES ('93', '编辑字段', 'admin', 'page', 'typeedit', '1', '91', '', '99');
+INSERT INTO `node` VALUES ('94', '删除字段', 'admin', 'page', 'typedel', '1', '91', '', '99');
+
+-- ----------------------------
+-- Table structure for page
+-- ----------------------------
+DROP TABLE IF EXISTS `page`;
+CREATE TABLE `page` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) DEFAULT NULL,
+  `info` mediumtext,
+  `lang` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of page
+-- ----------------------------
+INSERT INTO `page` VALUES ('3', '关于我们', 'sdf<p><br></p>', 'cn');
 
 -- ----------------------------
 -- Table structure for role
@@ -309,5 +358,5 @@ CREATE TABLE `user` (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('1', 'admin', '21232f297a57a5a743894a0e4a801fc3', '108', '127.0.0.1', '1496296455', 'admin', '1', '1');
+INSERT INTO `user` VALUES ('1', 'admin', '21232f297a57a5a743894a0e4a801fc3', '112', '127.0.0.1', '1496389277', 'admin', '1', '1');
 INSERT INTO `user` VALUES ('5', 'bobo', 'e10adc3949ba59abbe56e057f20f883e', '19', '127.0.0.1', '1494904744', '123', '1', '2');

@@ -7,6 +7,7 @@ use think\Request;
 use app\admin\model\Gbook as GbookModel;
 use app\admin\model\Field;
 
+
 class Gbook extends Base
 {
 
@@ -46,6 +47,7 @@ class Gbook extends Base
 
 
      public function gbookread($id){
+
          $field= new Field();
          $GbookModel = new GbookModel();
          $data=$GbookModel->getonegbook($id);
@@ -69,8 +71,8 @@ class Gbook extends Base
 
     public function  type(){
 
-        $field= new Field();
-        if(request()->isAjax()){
+            $field= new Field();
+            if(request()->isAjax()){
 
             $param = input('param.');
 

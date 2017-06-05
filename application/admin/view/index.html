@@ -14,7 +14,7 @@
 
 <link rel="shortcut icon" href="favicon.ico">
 <link href="__CSS__/bootstrap.min.css?v=3.3.6" rel="stylesheet">
-<link href="__CSS__/font-awesome.min.css?v=4.4.0" rel="stylesheet">
+<link href="__CSS__/font-awesome.min.css?v=4.7.0" rel="stylesheet">
 <link href="__CSS__/animate.min.css" rel="stylesheet">
 <link href="__CSS__/style.min.css?v=4.1.0" rel="stylesheet">
 </head>
@@ -49,7 +49,7 @@
                 {foreach name="menu" item="vo"}
                 <li class="menu">
                     <a href="{$vo.href}">
-                        <i class="{$vo.style}"></i>
+                        <i class="{$vo.style}" aria-hidden="true"></i>
                         <span class="nav-label">{$vo.node_name} </span>
                         <span class="fa arrow"></span>
                     </a>
@@ -81,6 +81,24 @@
                         class="fa fa-bars"></i> </a>
                 </div>
                 <ul class="nav navbar-top-links navbar-right" >
+                    <li class="dropdown">
+                        <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
+                            <i class="fa fa-bell"></i> <span class="label label-primary">1</span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-alerts">
+                            <li>
+                                <a href="mailbox.html">
+                                    <div>
+                                        <i class="fa fa-envelope fa-fw"></i>版本更新
+                                        <span class="pull-right text-muted small">4分钟前</span>
+                                    </div>
+                                </a>
+                            </li>
+
+
+                        </ul>
+                    </li>
+
                     <li class="dropdown hidden-xs">
                         <a class="right-sidebar-toggle" aria-expanded="false">
                             <i class="fa fa-tasks"></i> 主题

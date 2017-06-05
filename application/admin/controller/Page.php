@@ -104,7 +104,7 @@ class Page extends Controller
         $flag = $page->delPage($id);
         return json(['code' => $flag['code'], 'data' => $flag['data'], 'msg' => $flag['msg']]);
 
-        return $this->fetch();
+
 
     }
 
@@ -204,7 +204,7 @@ class Page extends Controller
         $flag = $field->delType($id);
         return json(['code' => $flag['code'], 'data' => $flag['data'], 'msg' => $flag['msg']]);
 
-        return $this->fetch();
+
 
     }
 

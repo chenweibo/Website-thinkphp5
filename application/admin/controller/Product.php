@@ -230,7 +230,7 @@ class Product extends Base
 
         return json(['code' => $flag['code'], 'data' => $flag['data'], 'msg' => $flag['msg']]);
 
-        return $this->fetch();
+
 
     }
 
@@ -338,7 +338,7 @@ class Product extends Base
         $flag = $field->delType($id);
         return json(['code' => $flag['code'], 'data' => $flag['data'], 'msg' => $flag['msg']]);
 
-        return $this->fetch();
+
 
     }
 

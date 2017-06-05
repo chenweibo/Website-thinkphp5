@@ -33,7 +33,7 @@ class Base extends Controller
                 $this->error('没有权限');
             }
         }
-
+        
         //获取权限菜单
         $node = new Node();
 

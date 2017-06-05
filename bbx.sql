@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2017-06-03 17:18:22
+Date: 2017-06-05 17:03:06
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -155,6 +155,23 @@ CREATE TABLE `gbook` (
 INSERT INTO `gbook` VALUES ('1', '123', '123123', '1231', '0000-00-00 00:00:00');
 
 -- ----------------------------
+-- Table structure for member
+-- ----------------------------
+DROP TABLE IF EXISTS `member`;
+CREATE TABLE `member` (
+  `id` int(255) NOT NULL AUTO_INCREMENT,
+  `username` varchar(255) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  `status` int(5) DEFAULT NULL,
+  `real_name` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of member
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for node
 -- ----------------------------
 DROP TABLE IF EXISTS `node`;
@@ -169,7 +186,7 @@ CREATE TABLE `node` (
   `style` varchar(155) DEFAULT '' COMMENT '菜单样式',
   `sort` int(50) DEFAULT '99',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=95 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=97 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of node
@@ -189,10 +206,10 @@ INSERT INTO `node` VALUES ('12', '数据备份/还原', 'admin', 'data', 'index'
 INSERT INTO `node` VALUES ('13', '备份数据', 'admin', 'data', 'importdata', '1', '12', '', '99');
 INSERT INTO `node` VALUES ('14', '还原数据', 'admin', 'data', 'backdata', '1', '12', '', '99');
 INSERT INTO `node` VALUES ('15', '基本管理', '#', '#', '#', '2', '0', 'fa fa-cog', '1');
-INSERT INTO `node` VALUES ('16', '产品管理', '#', '#', '#', '2', '0', 'fa fa-th-large', '3');
-INSERT INTO `node` VALUES ('17', '文章管理', '#', '#', '#', '2', '0', 'fa fa-book', '4');
-INSERT INTO `node` VALUES ('18', '图片管理', '#', '#', '#', '2', '0', 'fa fa-file-image-o', '5');
-INSERT INTO `node` VALUES ('19', '下载管理', '#', '#', '#', '2', '0', 'fa fa-cloud-download', '6');
+INSERT INTO `node` VALUES ('16', '产品管理', '#', '#', '#', '2', '0', 'fa fa-th-large', '6');
+INSERT INTO `node` VALUES ('17', '文章管理', '#', '#', '#', '2', '0', 'fa fa-book', '7');
+INSERT INTO `node` VALUES ('18', '图片管理', '#', '#', '#', '2', '0', 'fa fa-file-image-o', '8');
+INSERT INTO `node` VALUES ('19', '下载管理', '#', '#', '#', '2', '0', 'fa fa-cloud-download', '9');
 INSERT INTO `node` VALUES ('20', '微信管理', '#', '#', '#', '2', '0', 'fa fa-weixin', '97');
 INSERT INTO `node` VALUES ('21', '插件管理', '#', '#', '#', '2', '0', 'fa fa-plug', '98');
 INSERT INTO `node` VALUES ('23', '基本设置', 'admin', 'siteset', 'index', '2', '15', '', '99');
@@ -253,8 +270,8 @@ INSERT INTO `node` VALUES ('77', '批量删除', 'admin', 'down', 'delajax', '1'
 INSERT INTO `node` VALUES ('78', '添加字段', 'admin', 'down', 'typeadd', '1', '70', '', '99');
 INSERT INTO `node` VALUES ('79', '编辑字段', 'admin', 'down', 'typeedit', '1', '70', '', '99');
 INSERT INTO `node` VALUES ('80', '删除字段', 'admin', 'down', 'typedel', '1', '70', '', '99');
-INSERT INTO `node` VALUES ('81', '留言管理', '#', '#', '#', '2', '0', 'fa fa-commenting-o', '2');
-INSERT INTO `node` VALUES ('82', '单篇管理', '#', '#', '#', '2', '0', 'fa fa-pencil-square-o', '2');
+INSERT INTO `node` VALUES ('81', '留言管理', '#', '#', '#', '2', '0', 'fa fa-commenting-o', '4');
+INSERT INTO `node` VALUES ('82', '单篇管理', '#', '#', '#', '2', '0', 'fa fa-pencil-square-o', '5');
 INSERT INTO `node` VALUES ('83', '留言列表', 'admin', 'gbook', 'index', '2', '81', '', '99');
 INSERT INTO `node` VALUES ('84', '查看留言', 'admin', 'gbook', 'gbookread', '1', '83', '', '99');
 INSERT INTO `node` VALUES ('85', '删除留言', 'admin', 'gbook', 'gbookdel', '1', '83', '', '99');
@@ -267,6 +284,8 @@ INSERT INTO `node` VALUES ('91', '字段管理', 'admin', 'page', 'type', '2', '
 INSERT INTO `node` VALUES ('92', '添加字段', 'admin', 'page', 'typeadd', '1', '91', '', '99');
 INSERT INTO `node` VALUES ('93', '编辑字段', 'admin', 'page', 'typeedit', '1', '91', '', '99');
 INSERT INTO `node` VALUES ('94', '删除字段', 'admin', 'page', 'typedel', '1', '91', '', '99');
+INSERT INTO `node` VALUES ('95', '会员管理', '#', '#', '#', '2', '0', 'fa fa-user-circle', '3');
+INSERT INTO `node` VALUES ('96', '会员列表', 'admin', 'member', 'index', '2', '95', '', '99');
 
 -- ----------------------------
 -- Table structure for page
@@ -358,5 +377,5 @@ CREATE TABLE `user` (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('1', 'admin', '21232f297a57a5a743894a0e4a801fc3', '113', '127.0.0.1', '1496453899', 'admin', '1', '1');
+INSERT INTO `user` VALUES ('1', 'admin', '21232f297a57a5a743894a0e4a801fc3', '117', '127.0.0.1', '1496647805', 'admin', '1', '1');
 INSERT INTO `user` VALUES ('5', 'bobo', 'e10adc3949ba59abbe56e057f20f883e', '19', '127.0.0.1', '1494904744', '123', '1', '2');

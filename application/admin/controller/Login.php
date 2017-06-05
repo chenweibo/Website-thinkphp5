@@ -74,16 +74,7 @@ class Login extends Controller
     }
 
     //验证码
-    public function checkVerify()
-    {
-        $verify = new Verify();
-        $verify->imageH = 32;
-        $verify->imageW = 100;
-        $verify->length = 4;
-        $verify->useNoise = false;
-        $verify->fontSize = 14;
-        return $verify->entry();
-    }
+
 
     //退出操作
     public function loginOut()

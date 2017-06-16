@@ -75,7 +75,7 @@
     function a(d){
         var h='<ul>';
         for(var i=0;i<d.length;i++){
-            h+=' <li data-id="'+d[i].id+'"><span><i class="glyphicon glyphicon-leaf"></i>  '+d[i].name+'</span> <a href="./cateEdit?id='+d[i].id+'">编辑</a> <a onclick="cateDel('+d[i].id+')" href="#">删除</a>';
+            h+=' <li data-id="'+d[i].id+'"><span><i class="glyphicon glyphicon-th"></i>  '+d[i].name+'</span> <a href="./cateEdit?id='+d[i].id+'">编辑</a> <a onclick="cateDel('+d[i].id+')" href="#">删除</a>';
             if(d[i].children&&d[i].children.length>0){
                 h+=a(d[i].children)
             }

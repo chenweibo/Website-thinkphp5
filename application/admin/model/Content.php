@@ -122,4 +122,32 @@ class Content extends Model
         }
 
     }
+
+
+    public  function click($id){
+
+
+
+         $this->where('id',$id)->setInc('click', 1);
+    }
+
+    public function  getproduct($map,$order,$num){
+
+          $map['type']=1;
+          $map['show']=1;
+
+          return $this->where($map)->order($order)->limit($num)->select();
+
+    }
+
+    public function  getarticle($map,$order,$num){
+
+        $map['type']=2;
+        $map['show']=1;
+
+        return $this->where($map)->order($order)->limit($num)->select();
+
+    }
+
+
 }

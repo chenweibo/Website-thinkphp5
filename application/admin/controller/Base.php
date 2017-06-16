@@ -40,7 +40,8 @@ class Base extends Controller
         $this->assign([
             'username' => session('username'),
             'menu' => $node->getMenu(session('rule')),
-            'rolename' => session('role')
+            'rolename' => session('role'),
+            'baseFile' =>request()->baseFile()
         ]);
 
 

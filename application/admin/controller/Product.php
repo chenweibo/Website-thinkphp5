@@ -178,6 +178,7 @@ class Product extends Base
          $param = parseParams($param['data']);
          $param['lid']=explodepath($param['path']);
          $flag = $content->insertContent($param);
+
          return json(['code' => $flag['code'], 'tid' =>$param['lid'] , 'data' => $flag['data'], 'msg' => $flag['msg']]);
 
          }

@@ -32,6 +32,16 @@ class Cate extends Model
 
     }
 
+    public  function getCatewherefind($where){
+
+
+        $result = db('cate')->where($where)->find();
+        return $result;
+
+
+    }
+
+
 
 
     /**

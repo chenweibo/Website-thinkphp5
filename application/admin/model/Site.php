@@ -46,7 +46,11 @@ class Site extends Model
 
 
     }
+    public  function getsilidewhere($where){
 
+
+        return $this->where($where)->order('slide_sort asc')->select();
+    }
 
 
     public function editslide($param)

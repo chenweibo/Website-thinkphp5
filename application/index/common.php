@@ -55,6 +55,23 @@ function subTree($param, $pid = 0)
     return $res;
 }
 
+function codeimg($str){
+
+
+    $d=array_filter(explode('<img src="',$str));
+
+    foreach ($d as  $key=>$vo) {
+
+        $d[$key]=str_replace('">', '', $vo);
+
+    }
+
+
+    return $d;
+
+
+}
+
 /**
  * 整理菜单住方法
  * @param $param
@@ -155,6 +172,37 @@ function send_mail($tomail, $name, $subject = '', $body = '', $attachment = null
     }
     return $mail->Send() ? true : $mail->ErrorInfo;
 }
+
+
+
+function DeleteHtml($str)
+{   $str =  strip_tags($str);
+    $str = trim($str); //清除字符串两边的空格
+    $str = preg_replace("/\t/","",$str); //使用正则表达式替换内容，如：空格，换行，并将替换为空。
+    $str = preg_replace("/\r\n/","",$str);
+    $str = preg_replace("/\r/","",$str);
+    $str = preg_replace("/\n/","",$str);
+    $str = preg_replace("/ /","",$str);
+    //匹配html中的空格
+    return trim($str); //返回字符串
+}
+
+function getstring($data,$first,$last){
+
+
+    $data=DeleteHtml($data);
+    $data=mb_substr($data,$first,$last,'utf-8');
+
+     return $data;
+}
+
+function gettime($time,$type){
+
+     $data=strtotime($time);
+     return date($type,$data);
+}
+
+
 
 
 

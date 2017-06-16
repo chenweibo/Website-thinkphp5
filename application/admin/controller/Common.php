@@ -106,24 +106,66 @@ class Common extends Controller
 
 
 
-            $file = request()->file('img');
+         $files = request()->file('file');
 
 
 
-            $info = $file->rule('uniqid')->move(ROOT_PATH . 'public' . DS . 'uploads');
+
+
+            $info = $files->rule('uniqid')->move(ROOT_PATH . 'public' . DS . 'uploads');
+
             if($info){
-
-                return '/uploads/'.$info->getSaveName();
+              $img='/uploads/'.$info->getSaveName();
+                return $img;
 
             }else{
                 // 上传失败获取错误信息
-                return $file->getError();
+                return $files->getError();
             }
 
 
 
 
     }
+
+    public  function uploadt(){
+
+
+        $data=[];
+        $files = request()->file('img');
+
+        foreach($files as $file){
+            // 移动到框架应用根目录/public/uploads/ 目录下
+            $info = $file->rule('uniqid')->move(ROOT_PATH . 'public' . DS . 'uploads');
+            if($info){
+                // 成功上传后 获取上传信息
+                // 输出 jpg
+
+                $data[]='/uploads/'. $info->getFilename();
+            }else{
+                // 上传失败获取错误信息
+                echo $file->getError();
+            }
+        }
+
+
+//
+//            $info = $files->rule('uniqid')->move(ROOT_PATH . 'public' . DS . 'uploads');
+//
+//            if($info){
+//              $img='/uploads/'.$info->getSaveName();
+//                return json(['errno'=>'0', 'data'=>[$img]]);
+//
+//            }else{
+//                // 上传失败获取错误信息
+//                return $files->getError();
+//            }
+
+        return json(['errno'=>'0', 'data'=>$data]);
+
+
+    }
+
 
 
 

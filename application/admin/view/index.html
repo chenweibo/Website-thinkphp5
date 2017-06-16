@@ -11,7 +11,7 @@
 <!--[if lt IE 9]>
 <meta http-equiv="refresh" content="0;ie.html"/>
 <![endif]-->
-
+    <link href="__CSS__/plugins/toastr/toastr.min.css" rel="stylesheet">
 <link rel="shortcut icon" href="favicon.ico">
 <link href="__CSS__/bootstrap.min.css?v=3.3.6" rel="stylesheet">
 <link href="__CSS__/font-awesome.min.css?v=4.7.0" rel="stylesheet">
@@ -37,6 +37,9 @@
                             </span>
                         </a>
                         <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                            <li>
+                                <a href="">修改头像</a>
+                            </li>
                             <li>
                                 <a href="{:url('admin/login/loginOut')}">安全退出</a>
                             </li>
@@ -86,14 +89,7 @@
                             <i class="fa fa-bell"></i> <span class="label label-primary">1</span>
                         </a>
                         <ul class="dropdown-menu dropdown-alerts">
-                            <li>
-                                <a href="mailbox.html">
-                                    <div>
-                                        <i class="fa fa-envelope fa-fw"></i>版本更新
-                                        <span class="pull-right text-muted small">4分钟前</span>
-                                    </div>
-                                </a>
-                            </li>
+
 
 
                         </ul>
@@ -122,6 +118,7 @@
 
                 </button>
                 <ul role="menu" class="dropdown-menu dropdown-menu-right">
+                    <li ><a href="/" target="_blank" >网站首页</a>
                     <li class="J_tabGo"><a>前进</a>
                     </li>
                     <li class="J_tabBack"><a>后退</a>
@@ -252,6 +249,12 @@
 <!--<script type="text/javascript" src="__JS__/contabs.min.js"></script>-->
 <script type="text/javascript" src="__JS__/contabs.js"></script>
 <script src="__JS__/plugins/pace/pace.min.js"></script>
+
+<script src="__JS__/plugins/toastr/toastr.min.js"></script>
+
+
+
+
 </body>
 
 </html>

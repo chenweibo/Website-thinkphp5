@@ -6,7 +6,7 @@ use think\Controller;
 use think\Request;
 use app\admin\model\PageModel;
 use app\admin\model\Field;
-class Page extends Controller
+class Page extends Base
 {
 
 

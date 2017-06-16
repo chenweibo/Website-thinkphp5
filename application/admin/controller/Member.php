@@ -6,7 +6,7 @@ use think\Controller;
 use think\Request;
 use app\admin\model\Member as Membermodel;
 
-class Member extends Controller
+class Member extends Base
 {
 
     public function index()

@@ -29,6 +29,23 @@ return [
         // 验证成功后是否重置        
         'reset'    => true
 ],
+
+    'code'  => [
+        // 验证码字符集合
+        'codeSet'  => '123456789',
+        // 验证码字体大小(px)
+        'fontSize' => 19,
+        // 是否画混淆曲线
+        'useCurve' => false,
+        // 验证码图片高度
+        'imageH'   => 55,
+        // 验证码图片宽度
+        'imageW'   => 130,
+        // 验证码位数
+        'length'   => 4,
+        // 验证成功后是否重置
+        'reset'    => true
+    ],
     // 应用命名空间
     'app_namespace'          => 'app',
     // 应用调试模式

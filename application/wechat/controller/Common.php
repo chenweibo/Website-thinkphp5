@@ -33,6 +33,7 @@ class Common extends Controller
     }
 
 
+
     public  function  getAccess_token(){
 
         $appid=config('wechat.appID');
@@ -46,4 +47,6 @@ class Common extends Controller
 
 
     }
+
+
 }

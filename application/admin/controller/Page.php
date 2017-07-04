@@ -56,8 +56,8 @@ class Page extends Base
 
         if(request()->isPost()){
 
-            $param = input('param.');
-            $param = parseParams($param['data']);
+
+            $param = request()->param();
             $flag = $page->insertPage($param);
             return json(['code' => $flag['code'],  'data' => $flag['data'], 'msg' => $flag['msg']]);
 
@@ -74,9 +74,8 @@ class Page extends Base
 
         if(request()->isPost())
         {
-            $param = input('param.');
-            $param = parseParams($param['data']);
 
+            $param = request()->param();
             $flag = $page->editPage($param);
             return json(['code' => $flag['code'], 'data' => $flag['data'], 'msg' => $flag['msg']]);
 

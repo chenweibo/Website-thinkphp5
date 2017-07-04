@@ -53,14 +53,11 @@ class Index extends Base
         $downnum=$content->getAllContent('type=4');
         $gbooknum=$gbook->count();
         $pagenum=$page->count();;
-        $file = 'tongji.db';
-        $data = unserialize(file_get_contents($file));
 
-        $liulan=$data['total'];
-        $today = date('Ymd');
-        $ip=$data[$today];
+
+        $ip='-';
         $this->assign('ip',$ip);
-        $this->assign('liulan',$liulan);
+        $this->assign('liulan','-');
         $this->assign('pronum',$pronum);
         $this->assign('articlenum',$articlenum);
         $this->assign('imgnum',$imgnum);

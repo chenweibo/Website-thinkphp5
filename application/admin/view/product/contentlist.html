@@ -49,18 +49,18 @@
 
 
                     <!--搜索框开始-->
-                    <form id='commentForm' role="form" method="post" class="form-inline">
+                    <div id='commentForm'  class="form-inline">
                         <div class="content clearfix m-b">
                             <div class="form-group">
                                 <label>产品名称：</label>
                                 <input type="text" class="form-control" id="contentname" name="contentname">
                             </div>
                             <div class="form-group">
-                                <button class="btn btn-primary" type="button" style="margin-top:5px" id="search"><strong>搜 索</strong>
+                                <button class="btn btn-primary" type="button"  style="margin-top:5px" id="search"><strong>搜 索</strong>
                                 </button>
                             </div>
                         </div>
-                    </form>
+                    </div>
                     <!--搜索框结束-->
                     <div class="hr-line-dashed"></div>
 
@@ -165,7 +165,7 @@
                     pageNumber: params.pageNumber,
                     pageSize: params.pageSize,
                     searchText:$('#contentname').val()
-                          
+
                 };
 
                 return param;
@@ -192,6 +192,14 @@
 
         //调用函数，初始化表格
         initTable();
+
+        document.onkeydown=function(event){
+            var e = event || window.event || arguments.callee.caller.arguments[0];
+            if(e && e.keyCode==13){ // enter 键
+                $('#search').click();
+            }
+        };
+        var lock = false;
         $("#search").bind("click", initTable);
         //当点击查询按钮的时候执行
 

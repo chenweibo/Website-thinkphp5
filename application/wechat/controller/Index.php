@@ -19,8 +19,16 @@ class Index extends Common
         }
 
 
+    public function wechatconfig(){
 
-       //const TOKEN = 'bbx6';
+
+
+
+    }
+
+
+
+        const TOKEN = 'bbx6';
         public  function  peizhi(){
 
 
@@ -52,6 +60,8 @@ class Index extends Common
             return false;
 
         }
+
+
         }
 
 

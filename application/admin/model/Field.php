@@ -11,18 +11,15 @@ class Field extends Model
 
     public function insertType($param)
     {
-        try{
-
+        try {
             $result =  $this->save($param);
-            if(false === $result){
+            if (false === $result) {
                 // 验证失败 输出错误信息
                 return ['code' => -1, 'data' => '', 'msg' => $this->getError()];
-            }else{
-
+            } else {
                 return ['code' => 1, 'data' => '', 'msg' => '添加角色成功'];
             }
-        }catch( PDOException $e){
-
+        } catch (PDOException $e) {
             return ['code' => -2, 'data' => '', 'msg' => $e->getMessage()];
         }
     }
@@ -48,12 +45,10 @@ class Field extends Model
 
     public function delType($id)
     {
-        try{
-
+        try {
             $this->where('id', $id)->delete();
             return ['code' => 1, 'data' => '', 'msg' => '删除成功'];
-
-        }catch( PDOException $e){
+        } catch (PDOException $e) {
             return ['code' => 0, 'data' => '', 'msg' => $e->getMessage()];
         }
     }
@@ -67,21 +62,17 @@ class Field extends Model
 
     public function editType($param)
     {
-        try{
-
+        try {
             $result =  $this->save($param, ['id' => $param['id']]);
 
-            if(false === $result){
+            if (false === $result) {
                 // 验证失败 输出错误信息
                 return ['code' => 0, 'data' => '', 'msg' => $this->getError()];
-            }else{
-
+            } else {
                 return ['code' => 1, 'data' => '', 'msg' => '编辑分类成功'];
             }
-        }catch( PDOException $e){
+        } catch (PDOException $e) {
             return ['code' => 0, 'data' => '', 'msg' => $e->getMessage()];
         }
     }
-
-
 }

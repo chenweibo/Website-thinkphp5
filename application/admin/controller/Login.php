@@ -1,13 +1,5 @@
 <?php
-// +----------------------------------------------------------------------
-// | snake
-// +----------------------------------------------------------------------
-// | Copyright (c) 2016~2022 http://baiyf.cn All rights reserved.
-// +----------------------------------------------------------------------
-// | Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
-// +----------------------------------------------------------------------
-// | Author: NickBai <1902822973@qq.com>
-// +----------------------------------------------------------------------
+
 namespace app\admin\controller;
 
 use app\admin\model\UserType;
@@ -29,25 +21,25 @@ class Login extends Controller
         $captcha = input("param.code");
 
         $result = $this->validate(compact('username', 'password', "captcha"), 'AdminValidate');
-        if(true !== $result){
+        if (true !== $result) {
             return json(['code' => -5, 'data' => '', 'msg' => $result]);
         }
 
-        
+
         if (!captcha_check($captcha)) {
             return json(['code' => -4, 'data' => '', 'msg' => '验证码错误']);
         }
 
         $hasUser = db('user')->where('username', $username)->find();
-        if(empty($hasUser)){
+        if (empty($hasUser)) {
             return json(['code' => -1, 'data' => '', 'msg' => '管理员不存在']);
         }
 
-        if(md5($password) != $hasUser['password']){
+        if (md5($password) != $hasUser['password']) {
             return json(['code' => -2, 'data' => '', 'msg' => '密码错误']);
         }
 
-        if(1 != $hasUser['status']){
+        if (1 != $hasUser['status']) {
             return json(['code' => -6, 'data' => '', 'msg' => '该账号被禁用']);
         }
 

@@ -12,11 +12,11 @@ use think\Route;
 use think\Url;
 use think\Db;
 
-Route::rule('/','index/Index/index');
-Route::rule('newsView/:id','index/News/newsView');
-Route::rule('indusrtyView/:id','index/News/indusrtyView');
+Route::rule('/', 'index/Index/index');
+Route::rule('newsView/:id', 'index/News/newsView');
+Route::rule('indusrtyView/:id', 'index/News/indusrtyView');
 
-Route::rule('/wechat','admin/Wechat/index');
+Route::rule('/wechat', 'admin/Wechat/index');
 
 
 
@@ -45,5 +45,5 @@ return [
 
 
 
-     
+
 ];

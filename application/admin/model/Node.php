@@ -1,20 +1,11 @@
 <?php
-// +----------------------------------------------------------------------
-// | snake
-// +----------------------------------------------------------------------
-// | Copyright (c) 2016~2022 http://baiyf.cn All rights reserved.
-// +----------------------------------------------------------------------
-// | Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
-// +----------------------------------------------------------------------
-// | Author: NickBai <1902822973@qq.com>
-// +----------------------------------------------------------------------
+
 namespace app\admin\model;
 
 use think\Model;
 
 class Node extends Model
 {
-
     protected $table = "node";
 
     /**
@@ -28,18 +19,17 @@ class Node extends Model
         $role = new UserType();
         $rule = $role->getRuleById($id);
 
-        if(!empty($rule)){
+        if (!empty($rule)) {
             $rule = explode(',', $rule);
         }
-        foreach($result as $key=>$vo){
+        foreach ($result as $key=>$vo) {
             $str .= '{ "id": "' . $vo['id'] . '", "pId":"' . $vo['typeid'] . '", "name":"' . $vo['node_name'].'"';
 
-            if(!empty($rule) && in_array($vo['id'], $rule)){
+            if (!empty($rule) && in_array($vo['id'], $rule)) {
                 $str .= ' ,"checked":1';
             }
 
             $str.= '},';
-
         }
 
         return "[" . substr($str, 0, -1) . "]";

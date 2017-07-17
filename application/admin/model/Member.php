@@ -22,18 +22,15 @@ class Member extends Model
 
     public function insertMember($param)
     {
-        try{
-
+        try {
             $result =  $this->validate('MemberValidate')->save($param);
-            if(false === $result){
+            if (false === $result) {
                 // 验证失败 输出错误信息
                 return ['code' => -1, 'data' => '', 'msg' => $this->getError()];
-            }else{
-
+            } else {
                 return ['code' => 1, 'data' => '', 'msg' => '添加成功'];
             }
-        }catch( PDOException $e){
-
+        } catch (PDOException $e) {
             return ['code' => -2, 'data' => '', 'msg' => $e->getMessage()];
         }
     }
@@ -41,18 +38,16 @@ class Member extends Model
 
     public function editMember($param)
     {
-        try{
-
+        try {
             $result =  $this->validate('MemberValidate')->save($param, ['id' => $param['id']]);
 
-            if(false === $result){
+            if (false === $result) {
                 // 验证失败 输出错误信息
                 return ['code' => 0, 'data' => '', 'msg' => $this->getError()];
-            }else{
-
+            } else {
                 return ['code' => 1, 'data' => '', 'msg' => '编辑成功'];
             }
-        }catch( PDOException $e){
+        } catch (PDOException $e) {
             return ['code' => 0, 'data' => '', 'msg' => $e->getMessage()];
         }
     }
@@ -60,26 +55,18 @@ class Member extends Model
 
     public function delMember($id)
     {
-        try{
-
+        try {
             $this->where('id', $id)->delete();
             return ['code' => 1, 'data' => '', 'msg' => '删除成功'];
-
-        }catch( PDOException $e){
+        } catch (PDOException $e) {
             return ['code' => 0, 'data' => '', 'msg' => $e->getMessage()];
         }
     }
 
 
 
-    public function getonemember($id){
-
-
-        return $this->where('id',$id)->find();
+    public function getonemember($id)
+    {
+        return $this->where('id', $id)->find();
     }
-
-
-
-
-
 }

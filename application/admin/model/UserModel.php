@@ -1,13 +1,5 @@
 <?php
-// +----------------------------------------------------------------------
-// | snake
-// +----------------------------------------------------------------------
-// | Copyright (c) 2016~2022 http://baiyf.cn All rights reserved.
-// +----------------------------------------------------------------------
-// | Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
-// +----------------------------------------------------------------------
-// | Author: NickBai <1902822973@qq.com>
-// +----------------------------------------------------------------------
+
 namespace app\admin\model;
 
 use think\Model;
@@ -36,7 +28,6 @@ class UserModel extends Model
     public function getAllUsers($where)
     {
         return $this->where($where)->count();
-
     }
 
     /**
@@ -45,18 +36,15 @@ class UserModel extends Model
      */
     public function insertUser($param)
     {
-        try{
-
+        try {
             $result =  $this->validate('UserValidate')->save($param);
-            if(false === $result){
+            if (false === $result) {
                 // 验证失败 输出错误信息
                 return ['code' => -1, 'data' => '', 'msg' => $this->getError()];
-            }else{
-
+            } else {
                 return ['code' => 1, 'data' => '', 'msg' => '添加用户成功'];
             }
-        }catch( PDOException $e){
-
+        } catch (PDOException $e) {
             return ['code' => -2, 'data' => '', 'msg' => $e->getMessage()];
         }
     }
@@ -67,18 +55,16 @@ class UserModel extends Model
      */
     public function editUser($param)
     {
-        try{
-
+        try {
             $result =  $this->validate('UserValidate')->save($param, ['id' => $param['id']]);
 
-            if(false === $result){
+            if (false === $result) {
                 // 验证失败 输出错误信息
                 return ['code' => 0, 'data' => '', 'msg' => $this->getError()];
-            }else{
-
+            } else {
                 return ['code' => 1, 'data' => '', 'msg' => '编辑用户成功'];
             }
-        }catch( PDOException $e){
+        } catch (PDOException $e) {
             return ['code' => 0, 'data' => '', 'msg' => $e->getMessage()];
         }
     }
@@ -98,12 +84,10 @@ class UserModel extends Model
      */
     public function delUser($id)
     {
-        try{
-
+        try {
             $this->where('id', $id)->delete();
             return ['code' => 1, 'data' => '', 'msg' => '删除管理员成功'];
-
-        }catch( PDOException $e){
+        } catch (PDOException $e) {
             return ['code' => 0, 'data' => '', 'msg' => $e->getMessage()];
         }
     }

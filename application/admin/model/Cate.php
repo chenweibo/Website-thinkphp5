@@ -14,31 +14,22 @@ class Cate extends Model
      * @param $param
      */
 
-    public  function getCate($type){
-
-
-      $result = db('cate')->where('cate_type',$type)->select();
-      return $result;
-
-
+    public function getCate($type)
+    {
+        $result = db('cate')->where('cate_type', $type)->select();
+        return $result;
     }
 
-    public  function getCatewhere($where){
-
-
+    public function getCatewhere($where)
+    {
         $result = db('cate')->where($where)->select();
         return $result;
-
-
     }
 
-    public  function getCatewherefind($where){
-
-
+    public function getCatewherefind($where)
+    {
         $result = db('cate')->where($where)->find();
         return $result;
-
-
     }
 
 
@@ -49,13 +40,10 @@ class Cate extends Model
      * @param $param
      */
 
-    public  function getoneCate($id){
-
-
-        $result = db('cate')->where('id',$id)->find();
+    public function getoneCate($id)
+    {
+        $result = db('cate')->where('id', $id)->find();
         return $result;
-
-
     }
 
     /**
@@ -64,18 +52,15 @@ class Cate extends Model
      */
     public function insertCate($param)
     {
-        try{
-
+        try {
             $result =  $this->validate('CateValidate')->save($param);
-            if(false === $result){
+            if (false === $result) {
                 // 验证失败 输出错误信息
                 return ['code' => -1, 'data' => '', 'msg' => $this->getError()];
-            }else{
-
+            } else {
                 return ['code' => 1, 'data' => '', 'msg' => '添加角色成功'];
             }
-        }catch( PDOException $e){
-
+        } catch (PDOException $e) {
             return ['code' => -2, 'data' => '', 'msg' => $e->getMessage()];
         }
     }
@@ -86,33 +71,27 @@ class Cate extends Model
      */
     public function editCate($param)
     {
-        try{
-
+        try {
             $result =  $this->validate('CateValidate')->save($param, ['id' => $param['id']]);
 
-            if(false === $result){
+            if (false === $result) {
                 // 验证失败 输出错误信息
                 return ['code' => 0, 'data' => '', 'msg' => $this->getError()];
-            }else{
-
+            } else {
                 return ['code' => 1, 'data' => '', 'msg' => '编辑分类成功'];
             }
-        }catch( PDOException $e){
+        } catch (PDOException $e) {
             return ['code' => 0, 'data' => '', 'msg' => $e->getMessage()];
         }
     }
 
     public function delCate($id)
     {
-        try{
-
+        try {
             $this->where('id', $id)->delete();
             return ['code' => 1, 'data' => '', 'msg' => '删除分类成功'];
-
-        }catch( PDOException $e){
+        } catch (PDOException $e) {
             return ['code' => 0, 'data' => '', 'msg' => $e->getMessage()];
         }
     }
-
-
 }

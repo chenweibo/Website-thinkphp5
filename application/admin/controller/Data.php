@@ -1,13 +1,5 @@
 <?php
-// +----------------------------------------------------------------------
-// | snake
-// +----------------------------------------------------------------------
-// | Copyright (c) 2016~2022 http://baiyf.cn All rights reserved.
-// +----------------------------------------------------------------------
-// | Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
-// +----------------------------------------------------------------------
-// | Author: NickBai <1902822973@qq.com>
-// +----------------------------------------------------------------------
+
 namespace app\admin\controller;
 
 class Data extends Base
@@ -16,7 +8,7 @@ class Data extends Base
     public function index()
     {
         $tables = db()->query('show tables');
-        foreach($tables as $key=>$vo){
+        foreach ($tables as $key=>$vo) {
             $sql = "select count(0) as alls from " . $vo['Tables_in_' . config('database')];
             $tables[$key]['alls'] = db()->query($sql)['0']['alls'];
 
@@ -25,12 +17,11 @@ class Data extends Base
                 '还原' => "javascript:backData('" . $vo['Tables_in_' . config('database')] . "')"
             ];
             $tables[$key]['operate'] = showOperate($operate);
-            if(file_exists(config('back_path') . $vo['Tables_in_' . config('database')] . ".sql")){
+            if (file_exists(config('back_path') . $vo['Tables_in_' . config('database')] . ".sql")) {
                 $tables[$key]['ctime'] = date('Y-m-d H:i:s', filemtime(config('back_path') . $vo['Tables_in_' . config('database')] . ".sql"));
-            }else{
+            } else {
                 $tables[$key]['ctime'] = '无';
             }
-
         }
         $this->assign([
            'tables' => $tables
@@ -52,7 +43,7 @@ class Data extends Base
         $sqlStr .= "\r\n";
 
         $result = db()->query('select * from ' . $table);
-        foreach($result as $key=>$vo){
+        foreach ($result as $key=>$vo) {
             $keys = array_keys($vo);
             $keys = array_map('addslashes', $keys);
             $keys = join('`,`', $keys);
@@ -78,15 +69,14 @@ class Data extends Base
         set_time_limit(0);
         $table = input('param.table');
 
-        if(!file_exists(config('back_path') . $table . ".sql")){
+        if (!file_exists(config('back_path') . $table . ".sql")) {
             return json(['code' => -1, 'data' => '', 'msg' => '备份数据不存在!']);
         }
 
         $sqls = analysisSql(config('back_path') . $table . ".sql");
-        foreach($sqls as $key=>$sql){
+        foreach ($sqls as $key=>$sql) {
             db()->query($sql);
         }
         return json(['code' => 1, 'data' => '', 'msg' => 'success']);
     }
-
 }

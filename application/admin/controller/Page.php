@@ -6,14 +6,12 @@ use think\Controller;
 use think\Request;
 use app\admin\model\PageModel;
 use app\admin\model\Field;
+
 class Page extends Base
 {
-
-
     public function index()
     {
-        if(request()->isAjax()){
-
+        if (request()->isAjax()) {
             $param = input('param.');
             $limit = $param['pageSize'];
             $offset = ($param['pageNumber'] - 1) * $limit;
@@ -26,15 +24,13 @@ class Page extends Base
             $page = new PageModel();
             $selectResult = $page->getPageByWhere($where, $offset, $limit);
 
-            foreach($selectResult as $key=>$vo){
-
+            foreach ($selectResult as $key=>$vo) {
                 $operate = [
                     '编辑' => url('page/pageEdit', ['id' => $vo['id']]),
                     '删除' => "javascript:pageDel('".$vo['id']."')"
                 ];
 
                 $selectResult[$key]['operate'] = showOperate($operate);
-
             }
             $return['total'] = $page->getAllPage($where);  //总数据
             $return['rows'] = $selectResult;
@@ -42,77 +38,63 @@ class Page extends Base
             return json($return);
         }
 
-       return $this->fetch();
+        return $this->fetch();
     }
 
 
-    public function pageAdd(){
-
-
+    public function pageAdd()
+    {
         $field= new Field();
         $page = new PageModel();
         $type=$field->getTypeWhere('at_type=6');
-        $this->assign('type',$type);
+        $this->assign('type', $type);
 
-        if(request()->isPost()){
-
-
+        if (request()->isPost()) {
             $param = request()->param();
             $flag = $page->insertPage($param);
             return json(['code' => $flag['code'],  'data' => $flag['data'], 'msg' => $flag['msg']]);
-
         }
         return $this->fetch();
-
     }
 
 
-    public function pageEdit($id){
-
+    public function pageEdit($id)
+    {
         $field= new Field();
         $page = new PageModel();
 
-        if(request()->isPost())
-        {
-
+        if (request()->isPost()) {
             $param = request()->param();
             $flag = $page->editPage($param);
             return json(['code' => $flag['code'], 'data' => $flag['data'], 'msg' => $flag['msg']]);
-
-
         }
         $view=PageModel::get($id);
 
         $type=$field->getTypeWhere('at_type=6');
 
-        $this->assign('view',$view);
+        $this->assign('view', $view);
 
-        $this->assign('type',$type);
+        $this->assign('type', $type);
 
 
 
 
         return $this->fetch();
-
     }
 
-    public function pageDel(){
-
+    public function pageDel()
+    {
         $id = input('param.id');
         $page = new PageModel();
         $flag = $page->delPage($id);
         return json(['code' => $flag['code'], 'data' => $flag['data'], 'msg' => $flag['msg']]);
-
-
-
     }
 
 
-    public function  type(){
-
+    public function type()
+    {
         $field= new Field();
-        if(request()->isAjax()){
-
+        if (request()->isAjax()) {
             $param = input('param.');
 
             $limit = $param['pageSize'];
@@ -126,8 +108,7 @@ class Page extends Base
 
             $selectResult = $field->getTypeByWhere($where, $offset, $limit);
             $catelist=[1=>'纯文本', 2=>'富文本' ,3=>'单文件'];
-            foreach($selectResult as $key=>$vo){
-
+            foreach ($selectResult as $key=>$vo) {
                 $operate = [
                     '编辑' => url('Page/typeEdit', ['id' => $vo['id']]),
                     '删除' => "javascript:typeDel('".$vo['id']."')"
@@ -135,7 +116,6 @@ class Page extends Base
                 $catename=$catelist[$vo['fieldname']];
                 $selectResult[$key]['operate'] = showOperate($operate);
                 $selectResult[$key]['catename'] = $catename;
-
             }
             $return['total'] = $field->getAllType($where);  //总数据
             $return['rows'] = $selectResult;
@@ -148,52 +128,45 @@ class Page extends Base
         return $this->fetch();
     }
 
-    public function typeadd(){
-
+    public function typeadd()
+    {
         $field= new Field();
         $page = new PageModel();
-        if(request()->isPost()){
-
+        if (request()->isPost()) {
             $param = input('param.');
             $param = parseParams($param['data']);
             $flag = $field->insertType($param);
-            $page->addPagefield($param['the_column'],$param['fieldname']);
+            $page->addPagefield($param['the_column'], $param['fieldname']);
             return json(['code' => $flag['code'], 'data' => $flag['data'], 'msg' => $flag['msg']]);
-
-
         }
 
-        $this->assign('at_type',input('type'));
+        $this->assign('at_type', input('type'));
         return $this->fetch();
-
     }
 
-    public function  typeEdit(){
-
+    public function typeEdit()
+    {
         $id = input('param.id');
         $field= new Field();
         $page = new PageModel();
 
-        if(request()->isPost()){
-
+        if (request()->isPost()) {
             $param = input('param.');
             $param = parseParams($param['data']);
 
             $flag = $field->editType($param);
             return json(['code' => $flag['code'], 'data' => $flag['data'], 'msg' => $flag['msg']]);
-
-
         }
 
         $view=$field->getonetype($id);
-        $this->assign('view',$view);
+        $this->assign('view', $view);
         return $this->fetch();
     }
 
 
 
-    public function typeDel(){
-
+    public function typeDel()
+    {
         $id = input('param.id');
 
         $field= new Field();
@@ -202,11 +175,5 @@ class Page extends Base
         $page->delPagefield($com['the_column']);
         $flag = $field->delType($id);
         return json(['code' => $flag['code'], 'data' => $flag['data'], 'msg' => $flag['msg']]);
-
-
-
     }
-
-
-
 }

@@ -7,35 +7,26 @@ use think\Request;
 
 class Wechat extends Controller
 {
-
     public function _initialize()
     {
-
         $cache= cache('Access_token');
-        if($cache==false)
-        {
+        if ($cache==false) {
             $data=$this->getAccess_token();
 
 
-            cache('Access_token', $data,'7000');
-
+            cache('Access_token', $data, '7000');
         }
 
         $appid=config('wechat.appID');
         $appsecret=config('wechat.appsecret');
-        $this->assign('appid',$appid);
-        $this->assign('appsecret',$appsecret);
-
-
-
-
+        $this->assign('appid', $appid);
+        $this->assign('appsecret', $appsecret);
     }
 
 
 
-    public  function  index(){
-
-
+    public function index()
+    {
         $signature = $_GET["signature"];
 
         $timestamp = $_GET["timestamp"];
@@ -48,29 +39,23 @@ class Wechat extends Controller
 
         sort($tmpArr, SORT_STRING);
 
-        $tmpStr = implode( $tmpArr );
+        $tmpStr = implode($tmpArr);
 
-        $tmpStr = sha1( $tmpStr );
+        $tmpStr = sha1($tmpStr);
 
-        if( $tmpStr == $signature ){
-
+        if ($tmpStr == $signature) {
             header('content-type:text');
 
             echo $_GET["echostr"];
-
-        }else{
-
+        } else {
             return false;
-
         }
-
-
     }
 
-    public function  wechatconfig(){
-
-        if(request()->post()){
-        $param = request()->param();
+    public function wechatconfig()
+    {
+        if (request()->post()) {
+            $param = request()->param();
             config([
                 'appID'=>$param['appID'],
                 'appsecret'=>$param['appsecret'],
@@ -82,14 +67,12 @@ class Wechat extends Controller
 
 
 
-         return $this->fetch();
-
-
+        return $this->fetch();
     }
 
 
-    public  function  getAccess_token(){
-
+    public function getAccess_token()
+    {
         $appid=config('wechat.appID');
         $appsecret=config('wechat.appsecret');
 
@@ -98,10 +81,5 @@ class Wechat extends Controller
         $result = json_decode($html, true);
 
         return $result['access_token'];
-
-
     }
-
-
-
 }

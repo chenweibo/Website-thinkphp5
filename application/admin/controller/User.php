@@ -1,15 +1,6 @@
 <?php
-// +----------------------------------------------------------------------
-// | snake
-// +----------------------------------------------------------------------
-// | Copyright (c) 2016~2022 http://baiyf.cn All rights reserved.
-// +----------------------------------------------------------------------
-// | Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
-// +----------------------------------------------------------------------
-// | Author: NickBai <1902822973@qq.com>
-// +----------------------------------------------------------------------
-namespace app\admin\controller;
 
+namespace app\admin\controller;
 
 use app\admin\model\UserModel;
 use app\admin\model\UserType;
@@ -19,10 +10,9 @@ class User extends Base
     //用户列表
     public function index()
     {
-        if(request()->isAjax()){
-
+        if (request()->isAjax()) {
             $param = input('param.');
-            
+
             $limit = $param['pageSize'];
             $offset = ($param['pageNumber'] - 1) * $limit;
 
@@ -35,8 +25,7 @@ class User extends Base
 
             $status = config('user_status');
 
-            foreach($selectResult as $key=>$vo){
-
+            foreach ($selectResult as $key=>$vo) {
                 $selectResult[$key]['last_login_time'] = date('Y-m-d H:i:s', $vo['last_login_time']);
                 $selectResult[$key]['status'] = $status[$vo['status']];
 
@@ -46,9 +35,9 @@ class User extends Base
                 ];
 
                 $selectResult[$key]['operate'] = showOperate($operate);
-                
-                if( 1 == $vo['id'] ){
-                	$selectResult[$key]['operate'] = '';
+
+                if (1 == $vo['id']) {
+                    $selectResult[$key]['operate'] = '';
                 }
             }
 
@@ -64,8 +53,7 @@ class User extends Base
     //添加用户
     public function userAdd()
     {
-        if(request()->isPost()){
-
+        if (request()->isPost()) {
             $param = input('param.');
             $param = parseParams($param['data']);
 
@@ -90,13 +78,12 @@ class User extends Base
     {
         $user = new UserModel();
 
-        if(request()->isPost()){
-
+        if (request()->isPost()) {
             $param = input('post.');
             $param = parseParams($param['data']);
-            if(empty($param['password'])){
+            if (empty($param['password'])) {
                 unset($param['password']);
-            }else{
+            } else {
                 $param['password'] = md5($param['password']);
             }
             $flag = $user->editUser($param);

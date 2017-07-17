@@ -7,11 +7,7 @@ use think\Request;
 
 class Update extends Controller
 {
-
     public function index()
     {
-      
     }
-
-
 }

@@ -1,13 +1,5 @@
 <?php
-// +----------------------------------------------------------------------
-// | snake
-// +----------------------------------------------------------------------
-// | Copyright (c) 2016~2022 http://baiyf.cn All rights reserved.
-// +----------------------------------------------------------------------
-// | Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
-// +----------------------------------------------------------------------
-// | Author: NickBai <1902822973@qq.com>
-// +----------------------------------------------------------------------
+
 namespace app\admin\controller;
 
 use app\admin\model\Content;
@@ -18,9 +10,6 @@ class Index extends Base
 {
     public function index()
     {
-
-
-
         return $this->fetch('/index');
     }
 
@@ -30,8 +19,6 @@ class Index extends Base
      */
     public function indexPage()
     {
-
-
         $info = array(
             'ip' =>' [ '.gethostbyname($_SERVER['SERVER_NAME']).' ]',
             '域名'=>$_SERVER['SERVER_NAME'],
@@ -40,11 +27,11 @@ class Index extends Base
             '上传附件限制'=>ini_get('upload_max_filesize'),
             '执行时间限制'=>ini_get('max_execution_time').'秒',
             '服务器时间'=>date("Y年n月j日 H:i:s"),
-            '北京时间'=>gmdate("Y年n月j日 H:i:s",time()+8*3600),
-            '剩余空间'=>round((disk_free_space(".")/(1024*1024)),2).'M',
-            
+            '北京时间'=>gmdate("Y年n月j日 H:i:s", time()+8*3600),
+            '剩余空间'=>round((disk_free_space(".")/(1024*1024)), 2).'M',
+
         );
-         $gbook=new Gbook();
+        $gbook=new Gbook();
         $content=new Content();
         $page=new PageModel();
         $pronum=$content->getAllContent('type=1');
@@ -52,23 +39,21 @@ class Index extends Base
         $imgnum=$content->getAllContent('type=3');
         $downnum=$content->getAllContent('type=4');
         $gbooknum=$gbook->count();
-        $pagenum=$page->count();;
+        $pagenum=$page->count();
+        ;
 
 
         $ip='-';
-        $this->assign('ip',$ip);
-        $this->assign('liulan','-');
-        $this->assign('pronum',$pronum);
-        $this->assign('articlenum',$articlenum);
-        $this->assign('imgnum',$imgnum);
-        $this->assign('downnum',$downnum);
-        $this->assign('gbooknum',$gbooknum);
-        $this->assign('pagenum',$pagenum);
+        $this->assign('ip', $ip);
+        $this->assign('liulan', '-');
+        $this->assign('pronum', $pronum);
+        $this->assign('articlenum', $articlenum);
+        $this->assign('imgnum', $imgnum);
+        $this->assign('downnum', $downnum);
+        $this->assign('gbooknum', $gbooknum);
+        $this->assign('pagenum', $pagenum);
 
-        $this->assign('info',$info);
+        $this->assign('info', $info);
         return $this->fetch('index');
     }
-
-
-
 }
